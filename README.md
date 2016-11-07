@@ -1,3 +1,5 @@
+[![Code Climate](https://codeclimate.com/github/chris-intelatek/gosellapp/badges/gpa.svg)](https://codeclimate.com/github/chris-intelatek/gosellapp)[![Issue Count](https://codeclimate.com/github/chris-intelatek/gosellapp/badges/issue_count.svg)](https://codeclimate.com/github/chris-intelatek/gosellapp)
+
 # README
 
 This README would normally document whatever steps are necessary to get the

@@ -1,6 +1,6 @@
 class ProspectsController < ApplicationController
   before_action :set_prospect, only: [:show, :edit, :update, :destroy]
-  before_filter :authenticate_user!, :except => [:show, :index, :home]
+  before_filter :authenticate_user!, :except => [:home]
 
   def index
      @prospects = Prospect.all
