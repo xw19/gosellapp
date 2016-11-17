@@ -1,28 +1,27 @@
-
-  <p id="notice"><%= notice %></p>
-  <h2>Listing Prospects</h2>
-  <table border="1">
-    <tr>
-      <th>Campaign</th><th>List Number</th><th>Company</th><th>Co Phone</th>
-      <th>Address</th><th>City</th><th>State</th><th>Zip</th><th>County</th>
-      <th># of Empl</th><th>First Name</th><th>Last Name</th><th>Title</th>
-      <th>Phone</th><th>Mobile Phone</th><th>Email</th><th>Event Date/Time</th>
-      <th>sic</th><th>User ID</th><th>Show</th><th>Edit</th><th>Delete</th>
-    </tr>
-    <% @prospects.each do |p| %>
-    <tr>
-      <td><%= p.campaign %></td><td><%= p.list_number %></td><td><%= p.company %></td>
-      <td><%= p.company_phone %></td><td><%= p.address %></td><td><%= p.city %></td>
-      <td><%= p.state %></td><td><%= p.zip %></td><td><%= p.county %></td>
-      <td><%= p.numberofemployees %></td><td><%= p.first_name %></td>
-      <td><%= p.last_name %></td><td><%= p.title %></td><td><%= p.phone %></td>
-      <td><%= p.m_phone %></td><td><%= p.email %></td><td><%= p.eventdatetime %></td>
-      <td><%= p.sic %></td><td><%= p.user_id %></td>
-      <td><%= link_to 'Show', p, class: "btn btn-default btn-xs" %></td>
-      <td><%= link_to "Edit", edit_prospect_path(p), class: "btn btn-warning btn-xs" %></td>
-      <td><%= link_to "Delete", p, method: :delete, data: { confirm: 'Are you sure?'}, class: "btn btn-danger btn-xs" %></td>
-    </tr>
-    <% end %>
-  </table>
-  <br>
-  <%= link_to 'New Prospect', new_prospect_path, class: "btn btn-primary"%>
+<p id="notice"><%= notice %></p>
+<h2>Listing Prospects</h2>
+<table border="1">
+  <tr>
+    <th>Campaign</th><th>List Number</th><th>Company</th><th>Co Phone</th>
+    <th>Address</th><th>City</th><th>State</th><th>Zip</th><th>County</th>
+    <th># of Empl</th><th>First Name</th><th>Last Name</th><th>Title</th>
+    <th>Phone</th><th>Mobile Phone</th><th>Email</th><th>Event Date/Time</th>
+    <th>sic</th><th>User ID</th><th>Show</th><th>Edit</th><th>Delete</th>
+  </tr>
+  <% @prospects.each do |p| %>
+  <tr>
+    <td><%= p.campaign %></td><td><%= p.list_number %></td><td><%= p.company %></td>
+    <td><%= p.company_phone %></td><td><%= p.address %></td><td><%= p.city %></td>
+    <td><%= p.state %></td><td><%= p.zip %></td><td><%= p.county %></td>
+    <td><%= p.numberofemployees %></td><td><%= p.first_name %></td>
+    <td><%= p.last_name %></td><td><%= p.title %></td><td><%= p.phone %></td>
+    <td><%= p.m_phone %></td><td><%= p.email %></td><td><%= p.eventdatetime %></td>
+    <td><%= p.sic %></td><td><%= p.user_id %></td>
+    <td><%= link_to 'Show', p, class: "btn btn-default btn-xs" %></td>
+    <td><%= link_to "Edit", edit_prospect_path(p), class: "btn btn-warning btn-xs" %></td>
+    <td><%= link_to "Delete", p, method: :delete, data: { confirm: 'Are you sure?'}, class: "btn btn-danger btn-xs" %></td>
+  </tr>
+  <% end %>
+</table>
+<br>
+<%= link_to 'New Prospect', new_prospect_path, class: "btn btn-primary"%>

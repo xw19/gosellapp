@@ -1,194 +1,338 @@
-<br>
-<div class="container">
-  <div class="jumbotron">
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <h2 class="panel-title">Temp Prospect Show View</h2>
-      </div>
-       <div id="prospect-view">
-          <h5>Campaign: <%= @prospect.campaign %></h5>
-        </div>
-        <div id="prospect-view">
-          <h5>List Number: <%= @prospect.list_number %></h5>
-        </div>
-        <div id="prospect-view">
-          <h5>Time on Contact: <%= @prospect.time_on_contact %></h5>
-        </div>
-        <div id="prospect-view">
-          <h5>Status: <%= @prospect.status %></h5>
-        </div>
-        <div id="prospect-view">
-          <h5>Source: <%= @prospect.source %></h5>
-        </div>
-        <div id="prospect-view">
-          <h5>Company: <%= @prospect.company %></h5>
-        </div> 
-        <div id="prospect-view">
-          <h5>Company_phone: <%= @prospect.company_phone %></h5>
-        </div>
-        <div id="prospect-view">
-          <h5>Address: <%= @prospect.address %></h5>
-        </div>
-        <div id="prospect-view">
-          <h5>Address2: <%= @prospect.address2 %></h5>
-        </div>
-        <div id="prospect-view">
-          <h5>City: <%= @prospect.city %></h5>
-        </div>
-        <div id="prospect-view">
-          <h5>State: <%= @prospect.state %></h5>
-        </div>
-        <div id="prospect-view">
-          <h5>Zip: <%= @prospect.zip %></h5>
-        </div>
-        <div id="prospect-view">
-          <h5>County: <%= @prospect.county %></h5>
-        </div>
-        <div id="prospect-view">
-          <h5>Fax: <%= @prospect.fax %></h5>
-        </div>
-        <div id="prospect-view">
-          <h5>Website: <%= @prospect.website %></h5>
-        </div>
-        <div id="prospect-view">
-          <h5># of Empl: <%= @prospect.numberofemployees %></h5>
-        </div>
-        <div id="prospect-view">
-          <h5>First Name: <%= @prospect.first_name %></h5>
-        </div>
-        <div id="prospect-view">
-          <h5>Last Name: <%= @prospect.last_name %></h5>
-        </div>
-        <div id="prospect-view">
-          <h5>Title: <%= @prospect.title %></h5>
-        </div>
-        <div id="prospect-view">
-          <h5>Phone: <%= @prospect.phone %></h5>
-        </div>
-        <div id="prospect-view">
-          <h5>Mobile Phone: <%= @prospect.m_phone %></h5>
-        </div>
-        <div id="prospect-view">
-          <h5>Email: <%= @prospect.email %></h5>
-        </div>
-        <div id="prospect-view">
-          <h5>Alt Email: <%= @prospect.alt_email %></h5>
-        </div>
-        <div id="prospect-view">
-          <h5>LinkedIn: <%= @prospect.linkedin %></h5>
-        </div>
-        <div id="prospect-view">
-          <h5>Facebook: <%= @prospect.facebook %></h5>
-        </div>
-        <div id="prospect-view">
-          <h5>DOB: <%= @prospect.born_on %></h5>
-        </div>
-        <div id="prospect-view">
-          <h5>First Name 2: <%= @prospect.first_name_2 %></h5>
-        </div>
-        <div id="prospect-view">
-          <h5>Last Name 2: <%= @prospect.last_name_2 %></h5>
-        </div>
-        <div id="prospect-view">
-          <h5>Title 2: <%= @prospect.title_2 %></h5>
-        </div>
-        <div id="prospect-view">
-          <h5>Phone 2: <%= @prospect.phone_2 %></h5>
-        </div>
-        <div id="prospect-view">
-          <h5>Mobile Phone 2: <%= @prospect.m_phone_2 %></h5>
-        </div>
-        <div id="prospect-view">
-          <h5>Email 2: <%= @prospect.email_2 %></h5>
-        </div>
-        <div id="prospect-view">
-          <h5>Alt Email 2: <%= @prospect.alt_email_2 %></h5>
-        </div>
-        <div id="prospect-view">
-          <h5>LinkedIn 2: <%= @prospect.linkedin_2 %></h5>
-        </div>
-        <div id="prospect-view">
-          <h5>Facebook 2: <%= @prospect.facebook_2 %></h5>
-        </div>
-        <div id="prospect-view">
-          <h5>DOB 2: <%= @prospect.born_on_2 %></h5>
-        </div>
-        <div id="prospect-view">
-          <h5>First Name 3: <%= @prospect.first_name_3 %></h5>
-        </div>
-        <div id="prospect-view">
-          <h5>Last Name 3: <%= @prospect.last_name_3 %></h5>
-        </div>
-        <div id="prospect-view">
-          <h5>Title 3: <%= @prospect.title_3 %></h5>
-        </div>
-        <div id="prospect-view">
-          <h5>Phone 3: <%= @prospect.phone_3 %></h5>
-        </div>
-        <div id="prospect-view">
-          <h5>Mobile Phone 3: <%= @prospect.m_phone_3 %></h5>
-        </div>
-        <div id="prospect-view">
-          <h5>Email 3: <%= @prospect.email_3 %></h5>
-        </div>
-        <div id="prospect-view">
-          <h5>Alt Email 3: <%= @prospect.alt_email_3 %></h5>
-        </div>
-        <div id="prospect-view">
-          <h5>LinkedIn 3: <%= @prospect.linkedin_3 %></h5>
-        </div>
-        <div id="prospect-view">
-          <h5>Facebook 3: <%= @prospect.facebook_3 %></h5>
-        </div>
-        <div id="prospect-view">
-          <h5>DOB 3: <%= @prospect.born_on_3 %></h5>
-        </div>
-        <div id="prospect-view">
-          <h5>Other 1: <%= @prospect.other1 %></h5>
-        </div>
-        <div id="prospect-view">
-          <h5>Other 2: <%= @prospect.other2 %></h5>
-        </div>
-        <div id="prospect-view">
-          <h5>Other 3: <%= @prospect.other3 %></h5>
-        </div>
-        <div id="prospect-view">
-          <h5>Other 4: <%= @prospect.other4 %></h5>
-        </div>
-        <div id="prospect-view">
-          <h5>Other 5: <%= @prospect.other5 %></h5>
-        </div>
-        <div id="prospect-view">
-          <h5>Other 6: <%= @prospect.other6 %></h5>
-        </div>
-        <div id="prospect-view">
-          <h5>Other 7: <%= @prospect.other7 %></h5>
-        </div>
-        <div id="prospect-view">
-          <h5>Other 8: <%= @prospect.other8 %></h5>
-        </div>
-        <div id="prospect-view">
-          <h5>Event Date/Time: <%= @prospect.eventdatetime %></h5>
-        </div>
-        <div id="prospect-view">
-          <h5>sic: <%= @prospect.sic %></h5>
-        </div>
-        <div id="prospect-view">
-          <h5>User ID: <%= @prospect.user_id %></h5>
-        </div>
-        <br>
-        <br>
+<% provide(:title, "Making Sales a Competitive Sport") %>
 
-        <div class="panel-footer">
-          <div class="btn-toolbar">
-            <%= link_to 'Back', prospects_path, class: "btn btn-default" %> 
-            <%= link_to 'Show', @prospect, class: "btn btn-default" %>
-            <%= link_to "Edit", edit_prospect_path(@prospect), class: "btn btn-warning" %>   
-            <%= link_to "Delete", @prospect, method: :delete, data: { confirm: 'Are you sure?'}, class: "btn btn-danger" %>
-         </div>
-        <br>
+<div id="agent-view">
+  <div class="container-fluid">
+    <div class="panel panel-default col-md-6" id="panel-container">
+      <div class="panel-heading">
+        <div class="col-xs-12"><h6 align="right"><%= current_user.first_name %> <%= current_user.last_name %> | Campaign: <%= @prospect.campaign %> | List#: <%= @prospect.list_number %></h6></div>
+        <h2 class="panel-title"><%= @prospect.company %></h2>
+      </div>
+      <div class="container-fluid">
+        <!--This is a temporary visual aid to see grid scale if needed-->
+        <!--<div class="row" id="scale" style="background-color:lavenderblush;">-->
+        <!--  <div class="col-xs-1">1</div>-->
+        <!--  <div class="col-xs-1">2</div>-->
+        <!--  <div class="col-xs-1">3</div>-->
+        <!--  <div class="col-xs-1">4</div>-->
+        <!--  <div class="col-xs-1">5</div>-->
+        <!--  <div class="col-xs-1">6</div>-->
+        <!--  <div class="col-xs-1">7</div>-->
+        <!--  <div class="col-xs-1">8</div>-->
+        <!--  <div class="col-xs-1">9</div>-->
+        <!--  <div class="col-xs-1">10</div>-->
+        <!--  <div class="col-xs-1">11</div>-->
+        <!--  <div class="col-xs-1">12</div>-->
+        <!--</div>-->
+
+        <div class="row">
+          <div class="col-xs-6"><%= @prospect.first_name %> <%= @prospect.last_name %></div>
+          <div class="col-xs-4"><%= @prospect.title %></div>
+          <div class="col-xs-2">
+            <div class="btn-group">
+              <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-user"></span><span class="caret"></span>
+              </button>
+              <ul class="dropdown-menu dropdown-menu-right">
+                <% if @prospect.first_name.present? %>
+                  <li><a href="#contact1" data-toggle="collapse">
+                  <%= @prospect.title %> - <%= @prospect.first_name %> <%= @prospect.last_name %></a></li>
+                  <% else %>
+                    <li><a href="#contact1" data-toggle="collapse">Add Contact1</li>
+                <% end %>
+                <% if @prospect.first_name_2.present? %>
+                  <li><a href="#contact2" data-toggle="collapse">
+                  <%= @prospect.title_2 %> - <%= @prospect.first_name_2 %> <%= @prospect.last_name_2 %></a></li>
+                  <% else %>
+                    <li><a href="#contact2" data-toggle="collapse">Add Contact2</li>
+                <% end %>
+                <% if @prospect.first_name_3.present? %>
+                  <li><a href="#contact3" data-toggle="collapse">
+                  <%= @prospect.title_3 %> - <%= @prospect.first_name_3 %> <%= @prospect.last_name_3 %></a></li>
+                  <% else %>
+                    <li><a href="#contact3" data-toggle="collapse">Add Contact3</li>
+                <% end %>
+                <li><a href="#all-contacts" data-toggle="collapse">All Contacts</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      
+        <div class="row">
+          <div class="col-xs-6"><%= @prospect.company_phone %></div>
+          <div class="col-xs-6">Phone2 Field?</div>
+        </div>
+        <div class="row">
+          <div class="col-xs-6"><%= @prospect.address %></div>
+          <div class="col-xs-6"><%= @prospect.address2 %></div>
+        </div>
+        <div class="row">
+          <div class="col-xs-6"><%= @prospect.city %>, <%= @prospect.state %> <%= @prospect.zip %></div>
+          <div class="col-xs-6"><%= @prospect.county %> County</div>
+        </div>
+        <div class="row">
+          <div class="col-xs-6"><%= @prospect.email %></div>
+          <div class="col-xs-6"><%= @prospect.website %></div>
+        </div>
+
+
+      <div id="contact1" class="collapse">
+        <div class="row">
+          <div class="col-xs-12"><hr></div>
+        </div>
+        <div class="row">
+          <div class="col-xs-10"></div>
+          <div class="col-xs-2"><a href="#contact1" data-toggle="collapse"></span>Close</a></div>
+        </div>
+        <div class="row">
+          <div class="col-xs-6">Contact 1:
+          <%= @prospect.first_name %> <%= @prospect.last_name %></div>
+          <div class="col-xs-6">Title: <%= @prospect.title %></div>
+        </div>
+        <div class="row">
+          <div class="col-xs-6">Phone: <%= @prospect.phone %></div>
+          <div class="col-xs-6">M Phone: <%= @prospect.m_phone %></div>
+        </div>
+          
+        <div class="row">
+          <div class="col-xs-6">Email: <%= @prospect.email %></div>
+          <div class="col-xs-6">Email2: <%= @prospect.alt_email %></div>
+        </div>
+        <div class="row">
+          <div class="col-xs-6">LinkedIn: <a href="https://www.linkedin.com/in/<%= @prospect.linkedin %>"><%= @prospect.linkedin %></a></div>
+          <div class="col-xs-6">Facebook: <a href="https://www.facebook.com/<%= @prospect.facebook %>"><%= @prospect.facebook %></a></div>
+        </div>
+        <div class="row">
+          <div class="col-xs-6">DOB: <%= @prospect.born_on %></div>
+        </div>
+      </div>
+
+      <div id="contact2" class="collapse">
+        <div class="row">
+          <div class="col-xs-12"><hr></div>
+        </div>
+        <div class="row">
+          <div class="col-xs-10"></div>
+          <div class="col-xs-2"><a href="#contact2" data-toggle="collapse"></span>Close</a></div>
+        </div>
+        <div class="row">
+          <div class="col-xs-6">Contact 2: <%= @prospect.first_name_2 %> <%= @prospect.last_name_2 %></div>
+          <div class="col-xs-6">Title: <%= @prospect.title_2 %></div>
+        </div>
+        <div class="row">
+          <div class="col-xs-6">Phone: <%= @prospect.phone_2 %></div>
+          <div class="col-xs-6">M Phone: <%= @prospect.m_phone_2 %></div>
+        </div>
+          
+        <div class="row">
+          <div class="col-xs-6">Email: <%= @prospect.email_2 %></div>
+          <div class="col-xs-6">Email2: <%= @prospect.alt_email_2 %></div>
+        </div>
+        <div class="row">
+          <div class="col-xs-6">LinkedIn: <a href="https://www.linkedin.com/in/<%= @prospect.linkedin_2 %>"><%= @prospect.linkedin_2 %></a></div>
+          <div class="col-xs-6">Facebook: <a href="https://www.facebook.com/<%= @prospect.facebook_2 %>"><%= @prospect.facebook_2 %></a></div>
+        </div>
+        <div class="row">
+          <div class="col-xs-6">DOB: <%= @prospect.born_on_2 %></div>
+        </div>
+      </div>
+
+      <div id="contact3" class="collapse">
+        <div class="row">
+          <div class="col-xs-12"><hr></div>
+        </div>
+        <div class="row">
+          <div class="col-xs-10"></div>
+          <div class="col-xs-2"><a href="#contact3" data-toggle="collapse"></span>Close</a></div>
+        </div>
+        <div class="row">
+          <div class="col-xs-6">Contact 3: <%= @prospect.first_name_3 %> <%= @prospect.last_name_3 %></div>
+          <div class="col-xs-6">Title: <%= @prospect.title_3 %></div>
+        </div>
+        <div class="row">
+          <div class="col-xs-6">Phone: <%= @prospect.phone_3 %></div>
+          <div class="col-xs-6">M Phone: <%= @prospect.m_phone_3 %></div>
+        </div>
+          
+        <div class="row">
+          <div class="col-xs-6">Email: <%= @prospect.email_3 %></div>
+          <div class="col-xs-6">Email2: <%= @prospect.alt_email_3 %></div>
+        </div>
+        <div class="row">
+          <div class="col-xs-6">LinkedIn: <a href="https://www.linkedin.com/in/<%= @prospect.linkedin_3 %>"><%= @prospect.linkedin_3 %></a></div>
+          <div class="col-xs-6">Facebook: <a href="https://www.facebook.com/<%= @prospect.facebook_3 %>"><%= @prospect.facebook_3 %></a></div>
+        </div>
+        <div class="row">
+          <div class="col-xs-6">DOB: <%= @prospect.born_on_3 %></div>
+        </div>
+      </div>
+
+      <div id="all-contacts" class="collapse">
+        <div class="row">
+          <div class="col-xs-12"><hr></div>
+        </div>
+        <div class="row">
+          <div class="col-xs-10"></div>
+          <div class="col-xs-2"><a href="#all-contacts" data-toggle="collapse"></span>Close</a></div>
+        </div>
+        <div class="row">
+          <div class="col-xs-6">Contact 1: <%= @prospect.first_name %> <%= @prospect.last_name %></div>
+          <div class="col-xs-6">Title: <%= @prospect.title %></div>
+        </div>
+        <div class="row">
+          <div class="col-xs-6">Phone: <%= @prospect.phone %></div>
+          <div class="col-xs-6">M Phone: <%= @prospect.m_phone %></div>
+        </div>
+          
+        <div class="row">
+          <div class="col-xs-6">Email: <%= @prospect.email %></div>
+          <div class="col-xs-6">Email2: <%= @prospect.alt_email %></div>
+        </div>
+        <div class="row">
+          <div class="col-xs-6">LinkedIn: <a href="https://www.linkedin.com/in/<%= @prospect.linkedin %>"><%= @prospect.linkedin %></a></div>
+          <div class="col-xs-6">Facebook: <a href="https://www.facebook.com/<%= @prospect.facebook %>"><%= @prospect.facebook %></a></div>
+        </div>
+        <div class="row">
+          <div class="col-xs-6">DOB: <%= @prospect.born_on %></div>
+        </div>
+
+        <div class="row">
+          <div class="col-xs-12"><hr></div>
+        </div>
+        <div class="row">
+          <div class="col-xs-6">Contact 2: <%= @prospect.first_name_2 %> <%= @prospect.last_name_2 %></div>
+          <div class="col-xs-6">Title: <%= @prospect.title_2 %></div>
+        </div>
+        <div class="row">
+          <div class="col-xs-6">Phone: <%= @prospect.phone_2 %></div>
+          <div class="col-xs-6">M Phone: <%= @prospect.m_phone_2 %></div>
+        </div>
+          
+        <div class="row">
+          <div class="col-xs-6">Email: <%= @prospect.email_2 %></div>
+          <div class="col-xs-6">Email2: <%= @prospect.alt_email_2 %></div>
+        </div>
+        <div class="row">
+          <div class="col-xs-6">LinkedIn: <a href="https://www.linkedin.com/in/<%= @prospect.linkedin_2 %>"><%= @prospect.linkedin_2 %></a></div>
+          <div class="col-xs-6">Facebook: <a href="https://www.facebook.com/<%= @prospect.facebook_2 %>"><%= @prospect.facebook_2 %></a></div>
+        </div>
+        <div class="row">
+          <div class="col-xs-6">DOB: <%= @prospect.born_on_2 %></div>
+        </div>
+
+        <div class="row">
+          <div class="col-xs-12"><hr></div>
+        </div>
+        <div class="row">
+          <div class="col-xs-6">Contact 3: <%= @prospect.first_name_3 %> <%= @prospect.last_name_3 %></div>
+          <div class="col-xs-6">Title: <%= @prospect.title_3 %></div>
+        </div>
+        <div class="row">
+          <div class="col-xs-6">Phone: <%= @prospect.phone_3 %></div>
+          <div class="col-xs-6">M Phone: <%= @prospect.m_phone_3 %></div>
+        </div>
+          
+        <div class="row">
+          <div class="col-xs-6">Email: <%= @prospect.email_3 %></div>
+          <div class="col-xs-6">Email2: <%= @prospect.alt_email_3 %></div>
+        </div>
+        <div class="row">
+          <div class="col-xs-6">LinkedIn: <a href="https://www.linkedin.com/in/<%= @prospect.linkedin_3 %>"><%= @prospect.linkedin_3 %></a></div>
+          <div class="col-xs-6">Facebook: <a href="https://www.facebook.com/<%= @prospect.facebook_3 %>"><%= @prospect.facebook_3 %></a></div>
+        </div>
+        <div class="row">
+          <div class="col-xs-6">DOB: <%= @prospect.born_on_3 %></div>
+        </div>
+      </div>
+
+<!--Additional fields for the prospective company-->
+      <div id="more" class="collapse">
+        <div class="row">
+          <div class="col-xs-12"><hr></div>
+        </div>
+        <div class="row">
+          <div class="col-xs-10"></div>
+          <div class="col-xs-2"><a href="#more" data-toggle="collapse"></span>Close</a></div>
+        </div>
+        <div class="row">
+          <div class="col-xs-6">Fax: <%= @prospect.fax %></div>
+          <div class="col-xs-6">Fax: <%= @prospect.website %></div>
+        </div>
+
+        <div class="row">
+          <div class="col-xs-6"># of Empl: <%= @prospect.numberofemployees %></div>
+          <div class="col-xs-6">Source: <%= @prospect.source %></div>
+        </div>
+
+        <div class="row">
+          <div class="col-xs-12">sic: <%= @prospect.sic %></div>
+        </div>
+
+        <div class="row">
+          <div class="col-xs-6">Other 1: <%= @prospect.other1 %></div>
+          <div class="col-xs-6">Other 2: <%= @prospect.other2 %></div>
+        </div>
+        <div class="row">
+          <div class="col-xs-6">Other 3: <%= @prospect.other3 %></div>
+          <div class="col-xs-6">Other 4: <%= @prospect.other4 %></div>
+        </div>
+        <div class="row">
+          <div class="col-xs-6">Other 5: <%= @prospect.other5 %></div>
+          <div class="col-xs-6">Other 6: <%= @prospect.other6 %></div>
+        </div>
+        <div class="row">
+          <div class="col-xs-6">Other 7: <%= @prospect.other7 %></div>
+          <div class="col-xs-6">Other 8: <%= @prospect.other8 %></div>
+        </div>
+
+        <div class="row">
+          <div class="col-xs-6">User ID: <%= @prospect.user_id %></div>
+        </div>
+      </div>
+
+
+<!--Fields for dispositioning results of interaction with prospective company-->
+      <div id="result" class="collapse">
+        <div class="row">
+          <div class="col-xs-12"><hr></div>
+        </div>
+        <div class="row">
+          <div class="col-xs-10"></div>
+          <div class="col-xs-2"><a href="#result" data-toggle="collapse"></span>Close</a></div>
+        </div>
+        <div class="row">
+          <div class="col-xs-4">Note: </div>
+          <div class="col-xs-8">New note field here</div>
+        </div>
+        <div class="row">
+          <div class="col-xs-4">Result: </div>
+          <div class="col-xs-8"><%= @prospect.status %>(Select from dropdown here)</div>
+        </div>
+<!--(The following row should only appear based on result chosen)-->
+        <div class="row">
+          <div class="col-xs-4">Date/Time: </div>
+          <div class="col-xs-8">Date & Time fields (calendar icon/popup)</div>
+        </div>
+<!--(The following row should not be visable)-->
+        <div class="row">
+          <div class="col-xs-4">(Location Coordinates)</div>
+          <div class="col-xs-8">(Location Address)</div>
+        </div>
+<!--(The following row should not be visable)-->
+        <div class="row">
+          <div class="col-xs-4">Time on Contact: </div>
+          <div class="col-xs-8"><%= @prospect.time_on_contact %></div>
+        </div>
+      </div>
+
+      </div>
+      <div class="panel-footer">
+        <div class="btn-toolbar">
+          <a href="#result" class="btn btn-success" role="button" data-toggle="collapse">Result</a>
+          <a href="#more" class="btn btn-info" role="button" data-toggle="collapse">More</a>
+          <%= link_to 'Show', @prospect, class: "btn btn-default" %>
+          <%= link_to "Edit", edit_prospect_path(@prospect), class: "btn btn-warning" %>   
+          <%= link_to "Delete", @prospect, method: :delete, data: { confirm: 'Are you sure you want to delete Prospect?'}, class: "btn btn-danger" %>
+        </div>
       </div>
     </div>
-      <%= link_to 'New Prospect', new_prospect_path, class: "btn btn-primary"%>
   </div>
 </div>

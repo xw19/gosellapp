@@ -13,3 +13,48 @@
  *= require_tree .
  *= require_self
  */
+ 
+body { 
+  padding-top: 60px;
+  background-color: lavender;
+}
+
+#logo {
+  float: left;
+  margin-right: 10px;
+  font-size: 1.7em;
+  color: white;
+  font-style: italic;
+  letter-spacing: -1px;
+  font-weight: bold;
+  &:hover {
+  color: white;
+  text-decoration: none;
+  }
+}
+
+
+#footer .navbar { 
+  min-height:20px !important;
+  max-height: 21px;
+}
+
+/*bootstrap styling edits for agent view*/
+
+#agent-view #panel-container {
+  padding-left: 0;
+  padding-right: 0;
+  margin-left: -17px;
+  margin-right: -14px;
+  border-left-width: 0;
+  border-right-width: 0;
+}
+
+#agent-view .row {
+ padding-top: 4px;
+ padding-bottom: 4px;
+}
+
+
+/*reduce text size on mobile devices*/
+@media (max-width: 768px) { #mobile-text { font-size: .8em;}} 
