@@ -1,3 +1,5 @@
+<% provide(:title, "Making Sales a Competitive Sport") %>
+
 <%= form_for(@prospect) do |f| %>
   <% if @prospect.errors.any? %>
     <div id="error_explanation">
@@ -10,234 +12,398 @@
     </div>
   <% end %>
 
-  <div class="form-group">
-    <%= f.label :campaign %>
-    <%= f.text_field :campaign, class: "form-control" %>
+<div id="agent-view">
+  <div class="container-fluid">
+    <div class="panel panel-default col-md-6" id="panel-container">
+      <div class="panel-heading">
+        <div class="col-xs-12"><h6 align="right"><%= current_user.first_name %> <%= current_user.last_name %> | Campaign: <%= @prospect.campaign %> | List#: <%= @prospect.list_number %></h6></div>
+        <h2 class="panel-title"><%= f.text_field :company %></h2>
+      </div>
+      <div class="container-fluid">
+        <!--This is a temporary visual aid to see grid scale if needed-->
+        <!--<div class="row" id="scale" style="background-color:lavenderblush;">-->
+        <!--  <div class="col-xs-1">1</div>-->
+        <!--  <div class="col-xs-1">2</div>-->
+        <!--  <div class="col-xs-1">3</div>-->
+        <!--  <div class="col-xs-1">4</div>-->
+        <!--  <div class="col-xs-1">5</div>-->
+        <!--  <div class="col-xs-1">6</div>-->
+        <!--  <div class="col-xs-1">7</div>-->
+        <!--  <div class="col-xs-1">8</div>-->
+        <!--  <div class="col-xs-1">9</div>-->
+        <!--  <div class="col-xs-1">10</div>-->
+        <!--  <div class="col-xs-1">11</div>-->
+        <!--  <div class="col-xs-1">12</div>-->
+        <!--</div>-->
+
+
+
+        <div class="row">
+          <div class="form-group col-xs-4">
+            <%= f.label :first_name %>
+            <%= f.text_field :first_name, class: "form-control" %>
+          </div>
+          <div class="form-group col-xs-4">
+            <%= f.label :last_name %>
+            <%= f.text_field :last_name, class: "form-control" %>
+          </div>
+          <div class="form-group col-xs-4">
+            <%= f.label :title %>
+            <%= f.text_field :title, class: "form-control" %>
+          </div>
+        </div>
+      
+        <div class="row">
+          <div class="form-group col-xs-6">
+          <%= f.label :company_phone %>
+          <%= f.text_field :company_phone, class: "form-control" %>
+          </div>
+          <div class="form-group col-xs-6">
+          Phone2 Field?
+          </div>
+        </div>
+        <div class="row">
+          <div class="form-group col-xs-6">
+            <%= f.label :address %>
+            <%= f.text_field :address, class: "form-control" %>
+          </div>
+          <div class="form-group col-xs-6">
+            <%= f.label :address2 %>
+            <%= f.text_field :address2, class: "form-control" %>
+          </div>
+        </div>
+        <div class="row">
+          <div class="form-group col-xs-3">
+            <%= f.label :city %>
+            <%= f.text_field :city, class: "form-control" %>
+          </div>
+          <div class="form-group col-xs-3">
+            <%= f.label :state %>
+            <%= f.text_field :state, class: "form-control" %>
+          </div>
+          <div class="form-group col-xs-3">
+            <%= f.label :zip %>
+            <%= f.text_field :zip, class: "form-control" %>
+          </div>
+          <div class="form-group col-xs-3">
+            <%= f.label :county %>
+            <%= f.text_field :county, class: "form-control" %>
+          </div>
+        </div>
+        <div class="row">
+          <div class="form-group col-xs-6">
+            <%= f.label :email %>
+            <%= f.text_field :email, class: "form-control" %>
+          </div>
+          <div class="form-group col-xs-6">
+            <%= f.label :website %>
+            <%= f.text_field :website, class: "form-control" %></div>
+        </div>
+
+
+      <div id="contact1" class="collapse">
+        <div class="row">
+          <div class="col-xs-12"><hr></div>
+        </div>
+        <div class="row">
+          <div class="col-xs-10"></div>
+          <div class="col-xs-2"><a href="#contact1" data-toggle="collapse"></span>Close</a></div>
+        </div>
+        <div class="row">
+          <div class="col-xs-6">Contact 1:
+          <%= f.text_field :first_name %> <%= f.text_field :last_name %></div>
+          <div class="col-xs-6">Title: <%= f.text_field :title %></div>
+        </div>
+        <div class="row">
+          <div class="col-xs-6">Phone: <%= f.text_field :phone %></div>
+          <div class="col-xs-6">M Phone: <%= f.text_field :m_phone %></div>
+        </div>
+          
+        <div class="row">
+          <div class="col-xs-6">Email: <%= f.text_field :email %></div>
+          <div class="col-xs-6">Email2: <%= f.text_field :alt_email %></div>
+        </div>
+        <div class="row">
+          <div class="col-xs-6">LinkedIn: <a href="https://www.linkedin.com/in/<%= f.text_field :linkedin %>"><%= f.text_field :linkedin %></a></div>
+          <div class="col-xs-6">Facebook: <a href="https://www.facebook.com/<%= f.text_field :facebook %>"><%= f.text_field :facebook %></a></div>
+        </div>
+        <div class="row">
+          <div class="col-xs-6">DOB: <%= f.text_field :born_on %></div>
+        </div>
+      </div>
+
+      <div id="contact2" class="collapse">
+        <div class="row">
+          <div class="col-xs-12"><hr></div>
+        </div>
+        <div class="row">
+          <div class="col-xs-10"></div>
+          <div class="col-xs-2"><a href="#contact2" data-toggle="collapse"></span>Close</a></div>
+        </div>
+        <div class="row">
+          <div class="col-xs-6">Contact 2: <%= f.text_field :first_name_2 %> <%= f.text_field :last_name_2 %></div>
+          <div class="col-xs-6">Title: <%= f.text_field :title_2 %></div>
+        </div>
+        <div class="row">
+          <div class="col-xs-6">Phone: <%= f.text_field :phone_2 %></div>
+          <div class="col-xs-6">M Phone: <%= f.text_field :m_phone_2 %></div>
+        </div>
+          
+        <div class="row">
+          <div class="col-xs-6">Email: <%= f.text_field :email_2 %></div>
+          <div class="col-xs-6">Email2: <%= f.text_field :alt_email_2 %></div>
+        </div>
+        <div class="row">
+          <div class="col-xs-6">LinkedIn: <a href="https://www.linkedin.com/in/<%= f.text_field :linkedin_2 %>"><%= f.text_field :linkedin_2 %></a></div>
+          <div class="col-xs-6">Facebook: <a href="https://www.facebook.com/<%= f.text_field :facebook_2 %>"><%= f.text_field :facebook_2 %></a></div>
+        </div>
+        <div class="row">
+          <div class="col-xs-6">DOB: <%= f.text_field :born_on_2 %></div>
+        </div>
+      </div>
+
+      <div id="contact3" class="collapse">
+        <div class="row">
+          <div class="col-xs-12"><hr></div>
+        </div>
+        <div class="row">
+          <div class="col-xs-10"></div>
+          <div class="col-xs-2"><a href="#contact3" data-toggle="collapse"></span>Close</a></div>
+        </div>
+        <div class="row">
+          <div class="col-xs-6">Contact 3: <%= f.text_field :first_name_3 %> <%= f.text_field :last_name_3 %></div>
+          <div class="col-xs-6">Title: <%= f.text_field :title_3 %></div>
+        </div>
+        <div class="row">
+          <div class="col-xs-6">Phone: <%= f.text_field :phone_3 %></div>
+          <div class="col-xs-6">M Phone: <%= f.text_field :m_phone_3 %></div>
+        </div>
+          
+        <div class="row">
+          <div class="col-xs-6">Email: <%= f.text_field :email_3 %></div>
+          <div class="col-xs-6">Email2: <%= f.text_field :alt_email_3 %></div>
+        </div>
+        <div class="row">
+          <div class="col-xs-6">LinkedIn: <a href="https://www.linkedin.com/in/<%= f.text_field :linkedin_3 %>"><%= f.text_field :linkedin_3 %></a></div>
+          <div class="col-xs-6">Facebook: <a href="https://www.facebook.com/<%= f.text_field :facebook_3 %>"><%= f.text_field :facebook_3 %></a></div>
+        </div>
+        <div class="row">
+          <div class="col-xs-6">DOB: <%= f.text_field :born_on_3 %></div>
+        </div>
+      </div>
+
+      <div id="all-contacts" class="collapse">
+        <div class="row">
+          <div class="col-xs-12"><hr></div>
+        </div>
+        <div class="row">
+          <div class="col-xs-10"></div>
+          <div class="col-xs-2"><a href="#all-contacts" data-toggle="collapse"></span>Close</a></div>
+        </div>
+        <div class="row">
+          <div class="col-xs-6">Contact 1: <%= f.text_field :first_name %> <%= f.text_field :last_name %></div>
+          <div class="col-xs-6">Title: <%= f.text_field :title %></div>
+        </div>
+        <div class="row">
+          <div class="col-xs-6">Phone: <%= f.text_field :phone %></div>
+          <div class="col-xs-6">M Phone: <%= f.text_field :m_phone %></div>
+        </div>
+          
+        <div class="row">
+          <div class="col-xs-6">Email: <%= f.text_field :email %></div>
+          <div class="col-xs-6">Email2: <%= f.text_field :alt_email %></div>
+        </div>
+        <div class="row">
+          <div class="col-xs-6">LinkedIn: <a href="https://www.linkedin.com/in/<%= f.text_field :linkedin %>"><%= f.text_field :linkedin %></a></div>
+          <div class="col-xs-6">Facebook: <a href="https://www.facebook.com/<%= f.text_field :facebook %>"><%= f.text_field :facebook %></a></div>
+        </div>
+        <div class="row">
+          <div class="col-xs-6">DOB: <%= f.text_field :born_on %></div>
+        </div>
+
+        <div class="row">
+          <div class="col-xs-12"><hr></div>
+        </div>
+        <div class="row">
+          <div class="col-xs-6">Contact 2: <%= f.text_field :first_name_2 %> <%= f.text_field :last_name_2 %></div>
+          <div class="col-xs-6">Title: <%= f.text_field :title_2 %></div>
+        </div>
+        <div class="row">
+          <div class="col-xs-6">Phone: <%= f.text_field :phone_2 %></div>
+          <div class="col-xs-6">M Phone: <%= f.text_field :m_phone_2 %></div>
+        </div>
+          
+        <div class="row">
+          <div class="col-xs-6">Email: <%= f.text_field :email_2 %></div>
+          <div class="col-xs-6">Email2: <%= f.text_field :alt_email_2 %></div>
+        </div>
+        <div class="row">
+          <div class="col-xs-6">LinkedIn: <a href="https://www.linkedin.com/in/<%= f.text_field :linkedin_2 %>"><%= f.text_field :linkedin_2 %></a></div>
+          <div class="col-xs-6">Facebook: <a href="https://www.facebook.com/<%= f.text_field :facebook_2 %>"><%= f.text_field :facebook_2 %></a></div>
+        </div>
+        <div class="row">
+          <div class="col-xs-6">DOB: <%= f.text_field :born_on_2 %></div>
+        </div>
+
+        <div class="row">
+          <div class="col-xs-12"><hr></div>
+        </div>
+        <div class="row">
+          <div class="col-xs-6">Contact 3: <%= f.text_field :first_name_3 %> <%= f.text_field :last_name_3 %></div>
+          <div class="col-xs-6">Title: <%= f.text_field :title_3 %></div>
+        </div>
+        <div class="row">
+          <div class="col-xs-6">Phone: <%= f.text_field :phone_3 %></div>
+          <div class="col-xs-6">M Phone: <%= f.text_field :m_phone_3 %></div>
+        </div>
+          
+        <div class="row">
+          <div class="col-xs-6">Email: <%= f.text_field :email_3 %></div>
+          <div class="col-xs-6">Email2: <%= f.text_field :alt_email_3 %></div>
+        </div>
+        <div class="row">
+          <div class="col-xs-6">LinkedIn: <a href="https://www.linkedin.com/in/<%= f.text_field :linkedin_3 %>"><%= f.text_field :linkedin_3 %></a></div>
+          <div class="col-xs-6">Facebook: <a href="https://www.facebook.com/<%= f.text_field :facebook_3 %>"><%= f.text_field :facebook_3 %></a></div>
+        </div>
+        <div class="row">
+          <div class="col-xs-6">DOB: <%= f.text_field :born_on_3 %></div>
+        </div>
+      </div>
+
+<!--Additional fields for the prospective company-->
+      <div id="more" class="collapse">
+        <div class="row">
+          <div class="col-xs-12"><hr></div>
+        </div>
+        <div class="row">
+          <div class="col-xs-10"></div>
+          <div class="col-xs-2"><a href="#more" data-toggle="collapse"></span>Close</a></div>
+        </div>
+        
+        <div class="row">
+          <div class="form-group col-xs-6">
+            <%= f.label :numberofemployees %>
+            <%= f.text_field :numberofemployees, class: "form-control" %>
+          </div>
+          <div class="form-group col-xs-6">
+            <%= f.label :fax %>
+            <%= f.text_field :fax, class: "form-control" %>
+          </div>
+        </div>
+        
+        
+        <div class="row">
+          <div class="form-group col-xs-6">
+            <%= f.label :sic %>
+            <%= f.text_field :sic, class: "form-control" %>
+          </div>
+          <div class="form-group col-xs-6">
+            <%= f.label :source %>
+            <%= f.text_field :source, class: "form-control" %>
+          </div>
+        </div>
+        <div class="row">
+          <div class="form-group col-xs-6">
+          <%= f.label :other1 %>
+          <%= f.text_field :other1, class: "form-control" %>
+          </div>
+          <div class="form-group col-xs-6">
+          <%= f.label :other2 %> 
+          <%= f.text_field :other2, class: "form-control" %>
+          </div>
+        </div>
+        <div class="row">
+          <div class="form-group col-xs-6">
+          <%= f.label :other3 %>
+          <%= f.text_field :other3, class: "form-control" %>
+          </div>
+          <div class="form-group col-xs-6">
+          <%= f.label :other4 %>
+          <%= f.text_field :other4, class: "form-control" %>
+          </div>
+        </div>
+        <div class="row">
+          <div class="form-group col-xs-6">
+          <%= f.label :other5 %>
+          <%= f.text_field :other5, class: "form-control" %>
+          </div>
+          <div class="form-group col-xs-6">
+          <%= f.label :other6 %>
+          <%= f.text_field :other6, class: "form-control" %>
+          </div>
+        </div>
+        <div class="row">
+          <div class="form-group col-xs-6">
+          <%= f.label :other7 %>
+          <%= f.text_field :other7, class: "form-control" %>
+          </div>
+          <div class="form-group col-xs-6">
+          <%= f.label :other8 %>
+          <%= f.text_field :other8, class: "form-control" %>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-xs-6">User ID: <%= @prospect.user_id %></div>
+        </div>
+      </div>
+
+
+<!--Fields for dispositioning results of interaction with prospective company-->
+      <div id="result" class="collapse">
+        <div class="row">
+          <div class="col-xs-12"><hr></div>
+        </div>
+        <div class="row">
+          <div class="col-xs-10"></div>
+          <div class="col-xs-2"><a href="#result" data-toggle="collapse"></span>Close</a></div>
+        </div>
+        <div class="row">
+          <div class="col-xs-4">Note: </div>
+          <div class="col-xs-8">New note field here</div>
+        </div>
+        <div class="row">
+          <div class="col-xs-4">Result: </div>
+          <div class="col-xs-8"><%= f.text_field :status %>(Select from dropdown here)</div>
+        </div>
+<!--(The following row should only appear based on result chosen)-->
+        <div class="row">
+          <div class="col-xs-4">Date/Time: </div>
+          <div class="col-xs-8">Date & Time fields (calendar icon/popup)</div>
+        </div>
+<!--(The following row should not be visable)-->
+        <div class="row">
+          <div class="col-xs-4">(Location Coordinates)</div>
+          <div class="col-xs-8">(Location Address)</div>
+        </div>
+<!--(The following row should not be visable)-->
+        <div class="row">
+          <div class="col-xs-4">Time on Contact: </div>
+          <div class="col-xs-8"><%= @prospect.time_on_contact %></div>
+        </div>
+      </div>
+
+
+        <div class="row">
+          <div class="col-xs-8">
+            <%=  f.radio_button :primary_contact, ‘contact1’ %>Make Primary<br>
+            <%= f.radio_button :primary_contact, ‘contact1’ %>Make Primary<br>
+            <%= f.radio_button :primary_contact, ‘contact1’ %>Make Primary
+          </div>
+        </div>
+
+
+      </div>
+      <div class="panel-footer">
+        <div class="btn-toolbar">
+          <a href="#result" class="btn btn-success" role="button" data-toggle="collapse">Result</a>
+          <a href="#more" class="btn btn-info" role="button" data-toggle="collapse">More</a>
+          <%= link_to 'Show', @prospect, class: "btn btn-default" %>
+          <%= link_to "Delete", @prospect, method: :delete, data: { confirm: 'Are you sure you want to delete Prospect?'}, class: "btn btn-danger" %>
+          <%= f.submit class: "btn btn-primary" %>
+        </div>
+      </div>
+    </div>
   </div>
-  <div class="form-group">
-    <%= f.label :list_number %>
-    <%= f.text_field :list_number, class: "form-control" %>
-  </div>
-  <div class="form-group">
-    <%= f.label :time_on_contact %>
-    <%= f.text_field :time_on_contact, class: "form-control" %>
-  </div>
-  <div class="form-group">
-    <%= f.label :status %>
-    <%= f.text_field :status, class: "form-control" %>
-  </div>
-  <div class="form-group">
-    <%= f.label :source %>
-    <%= f.text_field :source, class: "form-control" %>
-  </div>
-  <div class="form-group">
-    <%= f.label :company %>
-    <%= f.text_field :company, class: "form-control" %>
-  </div> 
-  <div class="form-group">
-    <%= f.label :company_phone %>
-    <%= f.text_field :company_phone, class: "form-control" %>
-  </div>
-  <div class="form-group">
-    <%= f.label :address %>
-    <%= f.text_field :address, class: "form-control" %>
-  </div>
-  <div class="form-group">
-    <%= f.label :address2 %>
-    <%= f.text_field :address2, class: "form-control" %>
-  </div>
-  <div class="form-group">
-    <%= f.label :city %>
-    <%= f.text_field :city, class: "form-control" %>
-  </div>
-  <div class="form-group">
-    <%= f.label :state %>
-    <%= f.text_field :state, class: "form-control" %>
-  </div>
-  <div class="form-group">
-    <%= f.label :zip %>
-    <%= f.text_field :zip, class: "form-control" %>
-  </div>
-  <div class="form-group">
-    <%= f.label :county %>
-    <%= f.text_field :county, class: "form-control" %>
-  </div>
-  <div class="form-group">
-    <%= f.label :fax %>
-    <%= f.text_field :fax, class: "form-control" %>
-  </div>
-  <div class="form-group">
-    <%= f.label :website %>
-    <%= f.text_field :website, class: "form-control" %>
-  </div>
-  <div class="form-group">
-    <%= f.label :numberofemployees %>
-    <%= f.text_field :numberofemployees, class: "form-control" %>
-  </div>
-  <div class="form-group">
-    <%= f.label :first_name %>
-    <%= f.text_field :first_name, class: "form-control" %>
-  </div>
-  <div class="form-group">
-    <%= f.label :last_name %>
-    <%= f.text_field :last_name, class: "form-control" %>
-  </div>
-  <div class="form-group">
-    <%= f.label :title %>
-    <%= f.text_field :title, class: "form-control" %>
-  </div>
-  <div class="form-group">
-    <%= f.label :phone %>
-    <%= f.text_field :phone, class: "form-control" %>
-  </div>
-  <div class="form-group">
-    <%= f.label :m_phone %>
-    <%= f.text_field :m_phone, class: "form-control" %>
-  </div>
-  <div class="form-group">
-    <%= f.label :email %>
-    <%= f.text_field :email, class: "form-control" %>
-  </div>
-  <div class="form-group">
-    <%= f.label :alt_email %>
-    <%= f.text_field :alt_email, class: "form-control" %>
-  </div>
-  <div class="form-group">
-    <%= f.label :linkedin %>
-    <%= f.text_field :linkedin, class: "form-control" %>
-  </div>
-  <div class="form-group">
-    <%= f.label :facebook %>
-    <%= f.text_field :facebook, class: "form-control" %>
-  </div>
-  <div class="form-group">
-    <%= f.label :born_on %>
-    <%= f.text_field :born_on, class: "form-control" %>
-  </div>
-  <div class="form-group">
-    <%= f.label :first_name_2 %>
-    <%= f.text_field :first_name_2, class: "form-control" %>
-  </div>
-  <div class="form-group">
-    <%= f.label :last_name_2 %>
-    <%= f.text_field :last_name_2, class: "form-control" %>
-  </div>
-  <div class="form-group">
-    <%= f.label :title_2 %>
-    <%= f.text_field :title_2, class: "form-control" %>
-  </div>
-  <div class="form-group">
-    <%= f.label :phone_2 %>
-    <%= f.text_field :phone_2, class: "form-control" %>
-  </div>
-  <div class="form-group">
-    <%= f.label :m_phone_2 %>
-    <%= f.text_field :m_phone_2, class: "form-control" %>
-  </div>
-  <div class="form-group">
-    <%= f.label :email_2 %>
-    <%= f.text_field :email_2, class: "form-control" %>
-  </div>
-  <div class="form-group">
-    <%= f.label :alt_email_2 %>
-    <%= f.text_field :alt_email_2, class: "form-control" %>
-  </div>
-  <div class="form-group">
-    <%= f.label :linkedin_2 %>
-    <%= f.text_field :linkedin_2, class: "form-control" %>
-  </div>
-  <div class="form-group">
-    <%= f.label :facebook_2 %>
-    <%= f.text_field :facebook_2, class: "form-control" %>
-  </div>
-  <div class="form-group">
-    <%= f.label :born_on_2 %>
-    <%= f.text_field :born_on_2, class: "form-control" %>
-  </div>
-  <div class="form-group">
-    <%= f.label :first_name_3 %>
-    <%= f.text_field :first_name_3, class: "form-control" %>
-  </div>
-  <div class="form-group">
-    <%= f.label :last_name_3 %>
-    <%= f.text_field :last_name_3, class: "form-control" %>
-  </div>
-  <div class="form-group">
-    <%= f.label :title_3 %>
-    <%= f.text_field :title_3, class: "form-control" %>
-  </div>
-  <div class="form-group">
-    <%= f.label :phone_3 %>
-    <%= f.text_field :phone_3, class: "form-control" %>
-  </div>
-  <div class="form-group">
-    <%= f.label :m_phone_3 %>
-    <%= f.text_field :m_phone_3, class: "form-control" %>
-  </div>
-  <div class="form-group">
-    <%= f.label :email_3 %>
-    <%= f.text_field :email_3, class: "form-control" %>
-  </div>
-  <div class="form-group">
-    <%= f.label :alt_email_3 %>
-    <%= f.text_field :alt_email_3, class: "form-control" %>
-  </div>
-  <div class="form-group">
-    <%= f.label :linkedin_3 %>
-    <%= f.text_field :linkedin_3, class: "form-control" %>
-  </div>
-  <div class="form-group">
-    <%= f.label :facebook_3 %>
-    <%= f.text_field :facebook_3, class: "form-control" %>
-  </div>
-  <div class="form-group">
-    <%= f.label :born_on_3 %>
-    <%= f.text_field :born_on_3, class: "form-control" %>
-  </div>
-  <div class="form-group">
-    <%= f.label :other1 %>
-    <%= f.text_field :other1, class: "form-control" %>
-  </div>
-  <div class="form-group">
-    <%= f.label :other2 %>
-    <%= f.text_field :other2, class: "form-control" %>
-  </div>
-  <div class="form-group">
-    <%= f.label :other3 %>
-    <%= f.text_field :other3, class: "form-control" %>
-  </div>
-  <div class="form-group">
-    <%= f.label :other4 %>
-    <%= f.text_field :other4, class: "form-control" %>
-  </div>
-  <div class="form-group">
-    <%= f.label :other5 %>
-    <%= f.text_field :other5, class: "form-control" %>
-  </div>
-  <div class="form-group">
-    <%= f.label :other6 %>
-    <%= f.text_field :other6, class: "form-control" %>
-  </div>
-  <div class="form-group">
-    <%= f.label :other7 %>
-    <%= f.text_field :other7, class: "form-control" %>
-  </div>
-  <div class="form-group">
-    <%= f.label :other8 %>
-    <%= f.text_field :other8, class: "form-control" %>
-  </div>
-  <div class="form-group">
-    <%= f.label :eventdatetime %>
-    <%= f.text_field :eventdatetime, class: "form-control" %>
-  </div>
-  <div class="form-group">
-    <%= f.label :sic %>
-    <%= f.text_field :sic, class: "form-control" %>
-  </div>
-  <div class="cant-see-me">
-    <%= f.hidden_field :user_id, value: current_user.id %>
-  </div>
-  <div class="actions form-group" align="center">
-    <%= f.submit class: "btn btn-primary" %>
-  </div>
+</div>
 <% end %>
