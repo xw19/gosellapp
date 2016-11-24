@@ -1,0 +1,216 @@
+<% provide(:title, "Making Sales a Competitive Sport") %>
+
+<%= form_for(@prospect) do |f| %>
+  <% if @prospect.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@prospect.errors.count, "error") %> prohibited this prospect from being saved:</h2>
+      <ul>
+        <% @prospect.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+<div id="agent-view">
+  <div class="container-fluid">
+    <div class="panel panel-default col-md-6" id="panel-container">
+      <div class="panel-heading">
+        <div class="col-xs-12"><h6 align="right"><%= current_user.first_name %> <%= current_user.last_name %> | Campaign: <%= @prospect.campaign %> | List#: <%= @prospect.list_number %></h6></div>
+        <h2 class="panel-title"><%= @prospect.company %></h2>
+      </div>
+      <div class="container-fluid">
+        
+        <div class="row">
+          <div class="col-xs-6"><h4>Contact 1</h4></div>
+          <div class="col-xs-6">
+            <%= f.radio_button :primary_contact, '1' %>
+            <%= f.label :primary_contact, 'Primary Contact' %>
+          </div>
+        </div>
+        <div class="row">
+          <div class="form-group col-xs-4">
+            <%= f.label :first_name %>
+            <%= f.text_field :first_name, class: "form-control" %>
+          </div>
+          <div class="form-group col-xs-4">
+            <%= f.label :last_name %>
+            <%= f.text_field :last_name, class: "form-control" %>
+          </div>
+          <div class="form-group col-xs-4">
+            <%= f.label :title %>
+            <%= f.text_field :title, class: "form-control" %>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-6">
+            <%= f.label :phone %>
+            <%= f.text_field :phone, class: "form-control" %>
+          </div>
+          <div class="col-xs-6">
+            <%= f.label :m_phone, 'Mobile Phone' %>
+            <%= f.text_field :m_phone, class: "form-control" %>
+          </div>
+        </div>
+          
+        <div class="row">
+          <div class="col-xs-6">
+            <%= f.label :email %>
+            <%= f.text_field :email, class: "form-control" %>
+          </div>
+          <div class="col-xs-6">
+            <%= f.label :alt_email, 'Alt Email' %>
+            <%= f.text_field :alt_email, class: "form-control" %>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-6">
+            <%= f.label :linkedin %>
+            <%= f.text_field :linkedin, class: "form-control" %>
+          </div>
+          <div class="col-xs-6">
+            <%= f.label :facebook %>
+            <%= f.text_field :facebook, class: "form-control" %>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12">
+          <%= f.label :born_on, 'DOB' %><br>
+          <%= f.date_select :born_on, order: [:month, :day, :year], use_two_digit_numbers: true, start_year: 1920, prompt: { month: 'Mth', day: 'Day', year: 'Yr' }  %>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12"><hr></div>
+        </div>
+        <div class="row">
+          <div class="col-xs-6"><h4>Contact 2</h4></div>
+          <div class="col-xs-6">
+            <%= f.radio_button :primary_contact, '2' %>
+            <%= f.label :primary_contact, 'Primary Contact' %>
+          </div>
+        </div>
+        <div class="row">
+          <div class="form-group col-xs-4">
+            <%= f.label :first_name %>
+            <%= f.text_field :first_name_2, class: "form-control" %>
+          </div>
+          <div class="form-group col-xs-4">
+            <%= f.label :last_name %>
+            <%= f.text_field :last_name_2, class: "form-control" %>
+          </div>
+          <div class="form-group col-xs-4">
+            <%= f.label :title %>
+            <%= f.text_field :title_2, class: "form-control" %>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-6">
+            <%= f.label :phone %>
+            <%= f.text_field :phone_2, class: "form-control" %>
+          </div>
+          <div class="col-xs-6">
+            <%= f.label :m_phone, 'Mobile Phone' %>
+            <%= f.text_field :m_phone_2, class: "form-control" %>
+          </div>
+        </div>
+          
+        <div class="row">
+          <div class="col-xs-6">
+            <%= f.label :email %>
+            <%= f.text_field :email_2, class: "form-control" %>
+          </div>
+          <div class="col-xs-6">
+            <%= f.label :alt_email, 'Alt Email' %>
+            <%= f.text_field :alt_email_2, class: "form-control" %>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-6">
+            <%= f.label :linkedin %>
+            <%= f.text_field :linkedin_2, class: "form-control" %>
+          </div>
+          <div class="col-xs-6">
+            <%= f.label :facebook %>
+            <%= f.text_field :facebook_2, class: "form-control" %>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12">
+          <%= f.label :born_on, 'DOB' %><br>
+          <%= f.date_select :born_on_2, order: [:month, :day, :year], use_two_digit_numbers: true, start_year: 1920, prompt: { month: 'Mth', day: 'Day', year: 'Yr' }  %>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-xs-12"><hr></div>
+        </div>
+        <div class="row">
+          <div class="col-xs-6"><h4>Contact 3</h4></div>
+          <div class="col-xs-6">
+            <%= f.radio_button :primary_contact, '3' %>
+            <%= f.label :primary_contact, 'Primary Contact' %>
+          </div>
+        </div>
+        <div class="row">
+          <div class="form-group col-xs-4">
+            <%= f.label :first_name %>
+            <%= f.text_field :first_name_3, class: "form-control" %>
+          </div>
+          <div class="form-group col-xs-4">
+            <%= f.label :last_name %>
+            <%= f.text_field :last_name_3, class: "form-control" %>
+          </div>
+          <div class="form-group col-xs-4">
+            <%= f.label :title %>
+            <%= f.text_field :title_3, class: "form-control" %>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-6">
+            <%= f.label :phone %>
+            <%= f.text_field :phone_3, class: "form-control" %>
+          </div>
+          <div class="col-xs-6">
+            <%= f.label :m_phone, 'Mobile Phone' %>
+            <%= f.text_field :m_phone_3, class: "form-control" %>
+          </div>
+        </div>
+          
+        <div class="row">
+          <div class="col-xs-6">
+            <%= f.label :email %>
+            <%= f.text_field :email_3, class: "form-control" %>
+          </div>
+          <div class="col-xs-6">
+            <%= f.label :alt_email, 'Alt Email' %>
+            <%= f.text_field :alt_email_3, class: "form-control" %>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-6">
+            <%= f.label :linkedin %>
+            <%= f.text_field :linkedin_3, class: "form-control" %>
+          </div>
+          <div class="col-xs-6">
+            <%= f.label :facebook %>
+            <%= f.text_field :facebook_3, class: "form-control" %>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12">
+          <%= f.label :born_on, 'DOB' %><br>
+          <%= f.date_select :born_on_3, order: [:month, :day, :year], use_two_digit_numbers: true, start_year: 1920, prompt: { month: 'Mth', day: 'Day', year: 'Yr' }  %>
+          </div>
+        </div>
+      </div>
+      
+      <div class="panel-footer">
+        <div class="btn-toolbar">
+          <%= f.submit 'Update Contacts', class: "btn btn-primary pull-right" %>
+          <%= link_to 'Cancel', @prospect, class: "btn btn-default pull-right" %><br>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<% end %>

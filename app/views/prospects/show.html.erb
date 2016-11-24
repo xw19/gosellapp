@@ -4,9 +4,10 @@
   <div class="container-fluid">
     <div class="panel panel-default col-md-6" id="panel-container">
       <div class="panel-heading">
-        <div class="col-xs-12"><h6 align="right"><%= current_user.first_name %> <%= current_user.last_name %> | Campaign: <%= @prospect.campaign %> | List#: <%= @prospect.list_number %></h6></div>
+       <div class="col-xs-12"><h6 align="right">Campaign: <%= @prospect.campaign %> | List#: <%= @prospect.list_number %></h6></div>
         <h2 class="panel-title"><%= @prospect.company %></h2>
       </div>
+        
       <div class="container-fluid">
         <!--This is a temporary visual aid to see grid scale if needed-->
         <!--<div class="row" id="scale" style="background-color:lavenderblush;">-->
@@ -25,40 +26,55 @@
         <!--</div>-->
 
         <div class="row">
-          <div class="col-xs-6"><%= @prospect.first_name %> <%= @prospect.last_name %></div>
-          <div class="col-xs-4"><%= @prospect.title %></div>
+          <div class="col-xs-6">
+            <% if @prospect.primary_contact == 3 %>
+                <%= @prospect.first_name_3 %> <%= @prospect.last_name_3 %>
+              <% elsif @prospect.primary_contact == 2 %>
+                <%= @prospect.first_name_2 %> <%= @prospect.last_name_2 %>
+              <% else %>
+                <%= @prospect.first_name %> <%= @prospect.last_name %>
+            <% end %>
+          </div>
+          <div class="col-xs-4">
+            <% if @prospect.primary_contact == 3 %>
+                <%= @prospect.title_3 %>
+              <% elsif @prospect.primary_contact == 2 %>
+                <%= @prospect.title_2 %>
+              <% else %>
+                <%= @prospect.title %>
+            <% end %>
+          </div>
           <div class="col-xs-2">
             <div class="btn-group">
-              <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-user"></span><span class="caret"></span>
+              <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-user"></span><span class="caret"></span>
               </button>
               <ul class="dropdown-menu dropdown-menu-right">
                 <% if @prospect.first_name.present? %>
-                  <li><a href="#contact1" data-toggle="collapse">
+                  <li><a data-target="#contact1" data-toggle="collapse">
                   <%= @prospect.title %> - <%= @prospect.first_name %> <%= @prospect.last_name %></a></li>
                   <% else %>
                     <li><a href="#contact1" data-toggle="collapse">Add Contact1</li>
                 <% end %>
                 <% if @prospect.first_name_2.present? %>
-                  <li><a href="#contact2" data-toggle="collapse">
+                  <li><a data-target="#contact2" data-toggle="collapse">
                   <%= @prospect.title_2 %> - <%= @prospect.first_name_2 %> <%= @prospect.last_name_2 %></a></li>
                   <% else %>
-                    <li><a href="#contact2" data-toggle="collapse">Add Contact2</li>
+                    <li><%= link_to "Add Contact 2", edit_contacts_path(@prospect.id) %></li>
                 <% end %>
                 <% if @prospect.first_name_3.present? %>
-                  <li><a href="#contact3" data-toggle="collapse">
+                  <li><a data-target="#contact3" data-toggle="collapse">
                   <%= @prospect.title_3 %> - <%= @prospect.first_name_3 %> <%= @prospect.last_name_3 %></a></li>
                   <% else %>
-                    <li><a href="#contact3" data-toggle="collapse">Add Contact3</li>
+                    <li><%= link_to "Add Contact 3", edit_contacts_path(@prospect.id) %></li>
                 <% end %>
-                <li><a href="#all-contacts" data-toggle="collapse">All Contacts</a></li>
+                <li><a data-target="#contact1,#contact2,#contact3" data-toggle="collapse">All Contacts</a></li>
               </ul>
             </div>
           </div>
         </div>
-      
         <div class="row">
-          <div class="col-xs-6"><%= @prospect.company_phone %></div>
-          <div class="col-xs-6">Phone2 Field?</div>
+          <div class="col-xs-6"><span class="fa fa-phone"></span> <%= @prospect.company_phone %></div>
+          <div class="col-xs-6"></div>
         </div>
         <div class="row">
           <div class="col-xs-6"><%= @prospect.address %></div>
@@ -69,9 +85,45 @@
           <div class="col-xs-6"><%= @prospect.county %> County</div>
         </div>
         <div class="row">
-          <div class="col-xs-6"><%= @prospect.email %></div>
-          <div class="col-xs-6"><%= @prospect.website %></div>
+          <div class="col-xs-6">
+            <% if @prospect.primary_contact == 3 && @prospect.email_3.present? %>
+                <a href="mailto:<%= @prospect.email_3 %>">
+                <span class="glyphicon glyphicon-envelope"></span> <%= @prospect.email_3 %></a>
+              <% elsif @prospect.primary_contact == 2 && @prospect.email_2.present? %>
+                <a href="mailto:<%= @prospect.email_2 %>">
+                <span class="glyphicon glyphicon-envelope"></span> <%= @prospect.email_2 %></a>
+              <% elsif @prospect.email.present? %>
+                <a href="mailto:<%= @prospect.email %>">
+                <span class="glyphicon glyphicon-envelope"></span> <%= @prospect.email %></a>
+            <% end %>
+          </div>
+          <div class="col-xs-6">
+            <% if @prospect.website.present? %>
+              <a href="http://<%= @prospect.website %>">
+              <span class="glyphicon glyphicon-globe"></span> <%= @prospect.website %></a>
+            <% end %>
+          </div>
         </div>
+
+        <div class="row">
+          <div class="col-xs-2">Notes: </div>
+          <div class="col-xs-10">Notes should be listed here and visible without expanding</div>
+        </div>
+<!--(The following row should only appear based on status chosen)-->
+        <% if @prospect.status == "appointment" %>
+          <div class="row">
+            <div class="col-xs-2"></div>
+            <div class="col-xs-10">An <strong><%= @prospect.status %></strong> is scheduled for 
+            <strong><%= @prospect.eventdatetime.strftime("%m/%d/%y at %I:%M %p") %></strong></div>
+          </div>
+        <% end %>
+        <% if @prospect.status == "follow-up" %>
+          <div class="row">
+            <div class="col-xs-1"></div>
+            <div class="col-xs-11">You need to <strong><%= @prospect.status %></strong> on 
+            <strong><%= @prospect.eventdatetime.strftime("%m/%d/%y at %I:%M %p") %></strong></div>
+          </div>
+        <% end %>
 
 
       <div id="contact1" class="collapse">
@@ -79,30 +131,82 @@
           <div class="col-xs-12"><hr></div>
         </div>
         <div class="row">
-          <div class="col-xs-10"></div>
-          <div class="col-xs-2"><a href="#contact1" data-toggle="collapse"></span>Close</a></div>
+          <div class="col-xs-10"><strong>Contact 1 </strong>
+            <% if @prospect.primary_contact == 1 %>
+              <em>(primary)</em>
+            <% end %>
+          </div>
+          <div class="col-xs-2">
+            <a href="#contact1" data-toggle="collapse" class="btn btn-default btn-xs" type="button" >
+              <span class="fa fa-close"></span></a>
+          </div>
         </div>
         <div class="row">
-          <div class="col-xs-6">Contact 1:
-          <%= @prospect.first_name %> <%= @prospect.last_name %></div>
-          <div class="col-xs-6">Title: <%= @prospect.title %></div>
+          <div class="col-xs-6">
+            <% if @prospect.first_name.present? || @prospect.last_name.present? %>
+              <%= @prospect.first_name %> <%= @prospect.last_name %>
+            <% end %>
+          </div>
+          <div class="col-xs-6">
+            <% if @prospect.title.present? %>
+              <%= @prospect.title %>
+            <% end %>   
+          </div>
         </div>
         <div class="row">
-          <div class="col-xs-6">Phone: <%= @prospect.phone %></div>
-          <div class="col-xs-6">M Phone: <%= @prospect.m_phone %></div>
+          <div class="col-xs-6">
+            <% if @prospect.phone.present? %>
+              <span class="fa fa-phone"></span> 
+              <%= @prospect.phone %>
+            <% end %>
+          </div>
+          <div class="col-xs-6">
+            <% if @prospect.m_phone.present? %>
+              <span class="fa fa-mobile-phone"></span>
+              <%= @prospect.m_phone %>
+            <% end %>   
+          </div>
         </div>
-          
         <div class="row">
-          <div class="col-xs-6">Email: <%= @prospect.email %></div>
-          <div class="col-xs-6">Email2: <%= @prospect.alt_email %></div>
+          <div class="col-xs-6">
+            <% if @prospect.email.present? %>
+              <a href="mailto:<%= @prospect.email %>">
+              <span class="glyphicon glyphicon-envelope"></span> <%= @prospect.email %></a>
+            <% end %>
+          </div>
+          <div class="col-xs-6">
+            <% if @prospect.alt_email.present? %>
+              Alt <a href="mailto:<%= @prospect.alt_email %>">
+              <span class="glyphicon glyphicon-envelope"></span> <%= @prospect.alt_email %></a>
+            <% end %>   
+          </div>
         </div>
         <div class="row">
-          <div class="col-xs-6">LinkedIn: <a href="https://www.linkedin.com/in/<%= @prospect.linkedin %>"><%= @prospect.linkedin %></a></div>
-          <div class="col-xs-6">Facebook: <a href="https://www.facebook.com/<%= @prospect.facebook %>"><%= @prospect.facebook %></a></div>
+          <div class="col-xs-6">
+            <% if @prospect.linkedin.present? %>
+              <a href="https://www.linkedin.com/in/<%= @prospect.linkedin %>" class="btn btn-linkedin btn-xs" type="button" >
+              <span class="fa fa-linkedin"></span> | LinkedIn Profile</a>
+            <% end %>
+          </div>
+          <div class="col-xs-6">
+            <% if @prospect.facebook.present? %>
+            <a href="https://www.facebook.com/<%= @prospect.facebook %>" class="btn btn-facebook btn-xs" type="button" >
+              <span class="fa fa-facebook"></span> | Facebook Profile</a>
+            <% end %>
+          </div>
         </div>
+
         <div class="row">
-          <div class="col-xs-6">DOB: <%= @prospect.born_on %></div>
+          <div class="col-xs-6">
+            <% if @prospect.born_on.present? %>
+              DOB: <%= @prospect.born_on.strftime("%m/%d/%y") %>
+            <% end %>
+          </div>
+          <div class="col-xs-6">
+            <%= link_to "Add / Update Contacts", edit_contacts_path(@prospect.id), class: "btn btn-warning btn-xs pull-right" %> 
+          </div>
         </div>
+        
       </div>
 
       <div id="contact2" class="collapse">
@@ -110,138 +214,171 @@
           <div class="col-xs-12"><hr></div>
         </div>
         <div class="row">
-          <div class="col-xs-10"></div>
-          <div class="col-xs-2"><a href="#contact2" data-toggle="collapse"></span>Close</a></div>
+          <div class="col-xs-10"><strong>Contact 2 </strong>
+            <% if @prospect.primary_contact == 2 %>
+              <em>(primary)</em>
+            <% end %>
+          </div>
+          <div class="col-xs-2">
+            <a href="#contact2" data-toggle="collapse" class="btn btn-default btn-xs" type="button" >
+              <span class="fa fa-close"></span></a>
+          </div>
         </div>
         <div class="row">
-          <div class="col-xs-6">Contact 2: <%= @prospect.first_name_2 %> <%= @prospect.last_name_2 %></div>
-          <div class="col-xs-6">Title: <%= @prospect.title_2 %></div>
+          <div class="col-xs-6">
+            <% if @prospect.first_name_2.present? || @prospect.last_name_2.present? %>
+              <%= @prospect.first_name_2 %> <%= @prospect.last_name_2 %>
+            <% end %>
+          </div>
+          <div class="col-xs-6">
+            <% if @prospect.title_2.present? %>
+              <%= @prospect.title_2 %>
+            <% end %>   
+          </div>
         </div>
         <div class="row">
-          <div class="col-xs-6">Phone: <%= @prospect.phone_2 %></div>
-          <div class="col-xs-6">M Phone: <%= @prospect.m_phone_2 %></div>
+          <div class="col-xs-6">
+            <% if @prospect.phone_2.present? %>
+              <span class="fa fa-phone"></span> 
+              <%= @prospect.phone_2 %>
+            <% end %>
+          </div>
+          <div class="col-xs-6">
+            <% if @prospect.m_phone_2.present? %>
+              <span class="fa fa-mobile-phone"></span>
+              <%= @prospect.m_phone_2 %>
+            <% end %>   
+          </div>
         </div>
-          
-        <div class="row">
-          <div class="col-xs-6">Email: <%= @prospect.email_2 %></div>
-          <div class="col-xs-6">Email2: <%= @prospect.alt_email_2 %></div>
-        </div>
-        <div class="row">
-          <div class="col-xs-6">LinkedIn: <a href="https://www.linkedin.com/in/<%= @prospect.linkedin_2 %>"><%= @prospect.linkedin_2 %></a></div>
-          <div class="col-xs-6">Facebook: <a href="https://www.facebook.com/<%= @prospect.facebook_2 %>"><%= @prospect.facebook_2 %></a></div>
-        </div>
-        <div class="row">
-          <div class="col-xs-6">DOB: <%= @prospect.born_on_2 %></div>
-        </div>
-      </div>
 
+        <div class="row">
+          <div class="col-xs-6">
+            <% if @prospect.email_2.present? %>
+              <a href="mailto:<%= @prospect.email_2 %>">
+              <span class="glyphicon glyphicon-envelope"></span> <%= @prospect.email_2 %></a>
+            <% end %>
+          </div>
+          <div class="col-xs-6">
+            <% if @prospect.alt_email_2.present? %>
+              Alt <a href="mailto:<%= @prospect.alt_email_2 %>">
+              <span class="glyphicon glyphicon-envelope"></span> <%= @prospect.alt_email_2 %></a>
+            <% end %>   
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-6">
+            <% if @prospect.linkedin_2.present? %>
+              <a href="https://www.linkedin.com/in/<%= @prospect.linkedin_2 %>" class="btn btn-linkedin btn-xs" type="button" >
+              <span class="fa fa-linkedin"></span> | LinkedIn Profile</a>
+            <% end %>
+          </div>
+          <div class="col-xs-6">
+            <% if @prospect.facebook_2.present? %>
+            <a href="https://www.facebook.com/<%= @prospect.facebook_2 %>" class="btn btn-facebook btn-xs" type="button" >
+              <span class="fa fa-facebook"></span> | Facebook Profile</a>
+            <% end %>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-xs-6">
+            <% if @prospect.born_on_2.present? %>
+              DOB: <%= @prospect.born_on_2.strftime("%m/%d/%y") %>
+            <% end %>
+          </div>
+          <div class="col-xs-6">
+            <%= link_to "Add / Update Contacts", edit_contacts_path(@prospect.id), class: "btn btn-warning btn-xs pull-right" %> 
+          </div>
+        </div>
+        
+      </div>
+      
+      
       <div id="contact3" class="collapse">
         <div class="row">
           <div class="col-xs-12"><hr></div>
         </div>
         <div class="row">
-          <div class="col-xs-10"></div>
-          <div class="col-xs-2"><a href="#contact3" data-toggle="collapse"></span>Close</a></div>
+          <div class="col-xs-10"><strong>Contact 3 </strong>
+            <% if @prospect.primary_contact == 3 %>
+              <em>(primary)</em>
+            <% end %>
+          </div>
+          <div class="col-xs-2">
+            <a href="#contact3" data-toggle="collapse" class="btn btn-default btn-xs" type="button" >
+              <span class="fa fa-close"></span></a>
+          </div>
         </div>
         <div class="row">
-          <div class="col-xs-6">Contact 3: <%= @prospect.first_name_3 %> <%= @prospect.last_name_3 %></div>
-          <div class="col-xs-6">Title: <%= @prospect.title_3 %></div>
+          <div class="col-xs-6">
+            <% if @prospect.first_name_3.present? || @prospect.last_name_3.present? %>
+              <%= @prospect.first_name_3 %> <%= @prospect.last_name_3 %>
+            <% end %>
+          </div>
+          <div class="col-xs-6">
+            <% if @prospect.title_3.present? %>
+              <%= @prospect.title_3 %>
+            <% end %>   
+          </div>
         </div>
         <div class="row">
-          <div class="col-xs-6">Phone: <%= @prospect.phone_3 %></div>
-          <div class="col-xs-6">M Phone: <%= @prospect.m_phone_3 %></div>
+          <div class="col-xs-6">
+            <% if @prospect.phone_3.present? %>
+              <span class="fa fa-phone"></span> 
+              <%= @prospect.phone_3 %>
+            <% end %>
+          </div>
+          <div class="col-xs-6">
+            <% if @prospect.m_phone_3.present? %>
+              <span class="fa fa-mobile-phone"></span>
+              <%= @prospect.m_phone_3 %>
+            <% end %>   
+          </div>
         </div>
-          
+
         <div class="row">
-          <div class="col-xs-6">Email: <%= @prospect.email_3 %></div>
-          <div class="col-xs-6">Email2: <%= @prospect.alt_email_3 %></div>
+          <div class="col-xs-6">
+            <% if @prospect.email_3.present? %>
+              <a href="mailto:<%= @prospect.email_3 %>">
+              <span class="glyphicon glyphicon-envelope"></span> <%= @prospect.email_3 %></a>
+            <% end %>
+          </div>
+          <div class="col-xs-6">
+            <% if @prospect.alt_email_3.present? %>
+              Alt <a href="mailto:<%= @prospect.alt_email_3 %>">
+              <span class="glyphicon glyphicon-envelope"></span> <%= @prospect.alt_email_3 %></a>
+            <% end %>   
+          </div>
         </div>
         <div class="row">
-          <div class="col-xs-6">LinkedIn: <a href="https://www.linkedin.com/in/<%= @prospect.linkedin_3 %>"><%= @prospect.linkedin_3 %></a></div>
-          <div class="col-xs-6">Facebook: <a href="https://www.facebook.com/<%= @prospect.facebook_3 %>"><%= @prospect.facebook_3 %></a></div>
+          <div class="col-xs-6">
+            <% if @prospect.linkedin_3.present? %>
+              <a href="https://www.linkedin.com/in/<%= @prospect.linkedin_3 %>" class="btn btn-linkedin btn-xs" type="button" >
+              <span class="fa fa-linkedin"></span> | LinkedIn Profile</a>
+            <% end %>
+          </div>
+          <div class="col-xs-6">
+            <% if @prospect.facebook_3.present? %>
+            <a href="https://www.facebook.com/<%= @prospect.facebook_3 %>" class="btn btn-facebook btn-xs" type="button" >
+              <span class="fa fa-facebook"></span> | Facebook Profile</a>
+            <% end %>
+          </div>
         </div>
+
         <div class="row">
-          <div class="col-xs-6">DOB: <%= @prospect.born_on_3 %></div>
+          <div class="col-xs-6">
+            <% if @prospect.born_on_3.present? %>
+              DOB: <%= @prospect.born_on_3.strftime("%m/%d/%y") %>
+            <% end %>
+          </div>
+          <div class="col-xs-6">
+            <%= link_to "Add / Update Contacts", edit_contacts_path(@prospect.id), class: "btn btn-warning btn-xs pull-right" %>
+          </div>
         </div>
+        
       </div>
-
-      <div id="all-contacts" class="collapse">
-        <div class="row">
-          <div class="col-xs-12"><hr></div>
-        </div>
-        <div class="row">
-          <div class="col-xs-10"></div>
-          <div class="col-xs-2"><a href="#all-contacts" data-toggle="collapse"></span>Close</a></div>
-        </div>
-        <div class="row">
-          <div class="col-xs-6">Contact 1: <%= @prospect.first_name %> <%= @prospect.last_name %></div>
-          <div class="col-xs-6">Title: <%= @prospect.title %></div>
-        </div>
-        <div class="row">
-          <div class="col-xs-6">Phone: <%= @prospect.phone %></div>
-          <div class="col-xs-6">M Phone: <%= @prospect.m_phone %></div>
-        </div>
-          
-        <div class="row">
-          <div class="col-xs-6">Email: <%= @prospect.email %></div>
-          <div class="col-xs-6">Email2: <%= @prospect.alt_email %></div>
-        </div>
-        <div class="row">
-          <div class="col-xs-6">LinkedIn: <a href="https://www.linkedin.com/in/<%= @prospect.linkedin %>"><%= @prospect.linkedin %></a></div>
-          <div class="col-xs-6">Facebook: <a href="https://www.facebook.com/<%= @prospect.facebook %>"><%= @prospect.facebook %></a></div>
-        </div>
-        <div class="row">
-          <div class="col-xs-6">DOB: <%= @prospect.born_on %></div>
-        </div>
-
-        <div class="row">
-          <div class="col-xs-12"><hr></div>
-        </div>
-        <div class="row">
-          <div class="col-xs-6">Contact 2: <%= @prospect.first_name_2 %> <%= @prospect.last_name_2 %></div>
-          <div class="col-xs-6">Title: <%= @prospect.title_2 %></div>
-        </div>
-        <div class="row">
-          <div class="col-xs-6">Phone: <%= @prospect.phone_2 %></div>
-          <div class="col-xs-6">M Phone: <%= @prospect.m_phone_2 %></div>
-        </div>
-          
-        <div class="row">
-          <div class="col-xs-6">Email: <%= @prospect.email_2 %></div>
-          <div class="col-xs-6">Email2: <%= @prospect.alt_email_2 %></div>
-        </div>
-        <div class="row">
-          <div class="col-xs-6">LinkedIn: <a href="https://www.linkedin.com/in/<%= @prospect.linkedin_2 %>"><%= @prospect.linkedin_2 %></a></div>
-          <div class="col-xs-6">Facebook: <a href="https://www.facebook.com/<%= @prospect.facebook_2 %>"><%= @prospect.facebook_2 %></a></div>
-        </div>
-        <div class="row">
-          <div class="col-xs-6">DOB: <%= @prospect.born_on_2 %></div>
-        </div>
-
-        <div class="row">
-          <div class="col-xs-12"><hr></div>
-        </div>
-        <div class="row">
-          <div class="col-xs-6">Contact 3: <%= @prospect.first_name_3 %> <%= @prospect.last_name_3 %></div>
-          <div class="col-xs-6">Title: <%= @prospect.title_3 %></div>
-        </div>
-        <div class="row">
-          <div class="col-xs-6">Phone: <%= @prospect.phone_3 %></div>
-          <div class="col-xs-6">M Phone: <%= @prospect.m_phone_3 %></div>
-        </div>
-          
-        <div class="row">
-          <div class="col-xs-6">Email: <%= @prospect.email_3 %></div>
-          <div class="col-xs-6">Email2: <%= @prospect.alt_email_3 %></div>
-        </div>
-        <div class="row">
-          <div class="col-xs-6">LinkedIn: <a href="https://www.linkedin.com/in/<%= @prospect.linkedin_3 %>"><%= @prospect.linkedin_3 %></a></div>
-          <div class="col-xs-6">Facebook: <a href="https://www.facebook.com/<%= @prospect.facebook_3 %>"><%= @prospect.facebook_3 %></a></div>
-        </div>
-        <div class="row">
-          <div class="col-xs-6">DOB: <%= @prospect.born_on_3 %></div>
-        </div>
-      </div>
+      
+      
 
 <!--Additional fields for the prospective company-->
       <div id="more" class="collapse">
@@ -249,36 +386,54 @@
           <div class="col-xs-12"><hr></div>
         </div>
         <div class="row">
-          <div class="col-xs-10"></div>
-          <div class="col-xs-2"><a href="#more" data-toggle="collapse"></span>Close</a></div>
+          <div class="col-xs-10">
+            <em>More about <%= @prospect.company %></em>
+          </div>
+          <div class="col-xs-2">
+            <a href="#more" data-toggle="collapse" class="btn btn-default btn-xs" type="button" >
+              <span class="fa fa-close"></span></a>
+          </div>
         </div>
+        <% if @prospect.numberofemployees.present? || @prospect.fax.present? %>
+          <div class="row">
+            <div class="col-xs-6">
+            # of Empl: <%= @prospect.numberofemployees %></div>
+            <div class="col-xs-6">Fax: <%= @prospect.fax %></div>
+          </div>
+        <% end %>
+        <% if @prospect.sic.present? || @prospect.source.present? %>
+          <div class="row">
+            <div class="col-xs-6">sic: <%= @prospect.sic %></div>
+            <div class="col-xs-6">Source: <%= @prospect.source %></div>
+          </div>
+        <% end %>
+        <% if @prospect.other1.present? || @prospect.other2.present? %>
+          <div class="row">
+            <div class="col-xs-6">Other 1: <%= @prospect.other1 %></div>
+            <div class="col-xs-6">Other 2: <%= @prospect.other2 %></div>
+          </div>
+        <% end %>
+        <% if @prospect.other3.present? || @prospect.other4.present? %>
+          <div class="row">
+            <div class="col-xs-6">Other 3: <%= @prospect.other3 %></div>
+            <div class="col-xs-6">Other 4: <%= @prospect.other4 %></div>
+          </div>
+        <% end %>
+        <% if @prospect.other5.present? || @prospect.other6.present? %>
+          <div class="row">
+            <div class="col-xs-6">Other 5: <%= @prospect.other5 %></div>
+            <div class="col-xs-6">Other 6: <%= @prospect.other6 %></div>
+          </div>
+        <% end %>
+        <% if @prospect.other7.present? || @prospect.other8.present? %>
+          <div class="row">
+            <div class="col-xs-6">Other 7: <%= @prospect.other7 %></div>
+            <div class="col-xs-6">Other 8: <%= @prospect.other8 %></div>
+          </div>
+        <% end %>
         <div class="row">
-          <div class="col-xs-6"># of Empl: <%= @prospect.numberofemployees %></div>
-          <div class="col-xs-6">Fax: <%= @prospect.fax %></div>
-        </div>
-        <div class="row">
-          <div class="col-xs-12">sic: <%= @prospect.sic %></div>
-          <div class="col-xs-6">Source: <%= @prospect.source %></div>
-        </div>
-        <div class="row">
-          <div class="col-xs-6">Other 1: <%= @prospect.other1 %></div>
-          <div class="col-xs-6">Other 2: <%= @prospect.other2 %></div>
-        </div>
-        <div class="row">
-          <div class="col-xs-6">Other 3: <%= @prospect.other3 %></div>
-          <div class="col-xs-6">Other 4: <%= @prospect.other4 %></div>
-        </div>
-        <div class="row">
-          <div class="col-xs-6">Other 5: <%= @prospect.other5 %></div>
-          <div class="col-xs-6">Other 6: <%= @prospect.other6 %></div>
-        </div>
-        <div class="row">
-          <div class="col-xs-6">Other 7: <%= @prospect.other7 %></div>
-          <div class="col-xs-6">Other 8: <%= @prospect.other8 %></div>
-        </div>
-
-        <div class="row">
-          <div class="col-xs-6">User ID: <%= @prospect.user_id %></div>
+          <div class="col-xs-6">User: <%= current_user.first_name %> <%= current_user.last_name %>
+</div>
         </div>
       </div>
 
@@ -290,21 +445,23 @@
         </div>
         <div class="row">
           <div class="col-xs-10"></div>
-          <div class="col-xs-2"><a href="#result" data-toggle="collapse"></span>Close</a></div>
+          <div class="col-xs-2">
+            <a href="#result" data-toggle="collapse" class="btn btn-default btn-xs" type="button" >
+              <span class="fa fa-close"></span></a>
+          </div>
         </div>
         <div class="row">
           <div class="col-xs-4">Note: </div>
-          <div class="col-xs-8">New note field here</div>
+          <div class="col-xs-8">New note field goes here</div>
+        </div>
+
+        <div class="row">
+          <div class="col-xs-12">Disposition Form Fields Go Here</div>
         </div>
         <div class="row">
-          <div class="col-xs-4">Result: </div>
-          <div class="col-xs-8"><%= @prospect.status %>(Select from dropdown here)</div>
+          <div class="col-xs-12">Event Date & Time Fields Go Here</div>
         </div>
-<!--(The following row should only appear based on result chosen)-->
-        <div class="row">
-          <div class="col-xs-4">Date/Time: </div>
-          <div class="col-xs-8">Date & Time fields (calendar icon/popup)</div>
-        </div>
+
 <!--(The following row should not be visable)-->
         <div class="row">
           <div class="col-xs-4">(Location Coordinates)</div>
@@ -322,7 +479,6 @@
         <div class="btn-toolbar">
           <a href="#result" class="btn btn-success" role="button" data-toggle="collapse">Result</a>
           <a href="#more" class="btn btn-info" role="button" data-toggle="collapse">More</a>
-          <%= link_to 'Show', @prospect, class: "btn btn-default" %>
           <%= link_to "Edit", edit_prospect_path(@prospect), class: "btn btn-warning" %>   
           <%= link_to "Delete", @prospect, method: :delete, data: { confirm: 'Are you sure you want to delete Prospect?'}, class: "btn btn-danger" %>
         </div>

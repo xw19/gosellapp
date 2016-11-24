@@ -14,6 +14,8 @@
  *= require_self
  */
  
+
+
 body { 
   padding-top: 60px;
   background-color: lavender;
@@ -38,8 +40,6 @@ body {
   max-height: 21px;
 }
 
-/*bootstrap styling edits for agent view*/
-
 #agent-view #panel-container {
   padding-left: 0;
   padding-right: 0;
@@ -49,11 +49,37 @@ body {
   border-right-width: 0;
 }
 
+hr {
+ margin: 10px;
+ border-color: #A9A9A9;
+}
+
+.right {
+text-align: right;
+}
+
+.left {
+text-align: left;
+}
+
+.center {
+text-align: center;
+}
+
 #agent-view .row {
  padding-top: 4px;
  padding-bottom: 4px;
 }
 
+.btn-linkedin {
+    background: #4875B4;
+    color: #ffffff;
+}
+
+.btn-facebook {
+    background: #3B5998;
+    color: #ffffff;
+}
 
 /*reduce text size on mobile devices*/
 @media (max-width: 768px) { #mobile-text { font-size: .8em;}} 
