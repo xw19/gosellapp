@@ -1,27 +1,59 @@
+<% provide(:title, "Making Sales a Competitive Sport") %>
+
 <p id="notice"><%= notice %></p>
-<h2>Listing Prospects</h2>
-<table border="1">
-  <tr>
-    <th>Campaign</th><th>List Number</th><th>Company</th><th>Co Phone</th>
-    <th>Address</th><th>City</th><th>State</th><th>Zip</th><th>County</th>
-    <th># of Empl</th><th>First Name</th><th>Last Name</th><th>Title</th>
-    <th>Phone</th><th>Mobile Phone</th><th>Email</th><th>Event Date/Time</th>
-    <th>sic</th><th>User ID</th><th>Show</th><th>Edit</th><th>Delete</th>
-  </tr>
-  <% @prospects.each do |p| %>
-  <tr>
-    <td><%= p.campaign %></td><td><%= p.list_number %></td><td><%= p.company %></td>
-    <td><%= p.company_phone %></td><td><%= p.address %></td><td><%= p.city %></td>
-    <td><%= p.state %></td><td><%= p.zip %></td><td><%= p.county %></td>
-    <td><%= p.numberofemployees %></td><td><%= p.first_name %></td>
-    <td><%= p.last_name %></td><td><%= p.title %></td><td><%= p.phone %></td>
-    <td><%= p.m_phone %></td><td><%= p.email %></td><td><%= p.eventdatetime %></td>
-    <td><%= p.sic %></td><td><%= p.user_id %></td>
-    <td><%= link_to 'Show', p, class: "btn btn-default btn-xs" %></td>
-    <td><%= link_to "Edit", edit_prospect_path(p), class: "btn btn-warning btn-xs" %></td>
-    <td><%= link_to "Delete", p, method: :delete, data: { confirm: 'Are you sure?'}, class: "btn btn-danger btn-xs" %></td>
-  </tr>
-  <% end %>
-</table>
-<br>
-<%= link_to 'New Prospect', new_prospect_path, class: "btn btn-primary"%>
+
+
+  <div class="container-fluid">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <div class="row">
+          <div class="col-md-6">
+            <strong>Listing Prospects</strong>
+          </div>
+          <div class="col-md-6">
+            <%= form_tag import_prospects_path, multipart: true, class: 'form-inline' do %>
+        
+              <div class="form-group">
+                <%= submit_tag "Import CSV", class: 'btn btn-info btn-sm' %>
+              </div>
+              <div class="form-group">
+                <%= link_to "Export CSV", prospects_path(format: "csv"), class: 'btn btn-primary btn-sm' %>
+              </div>
+              <div class="form-group">
+                <%= file_field_tag :file %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <div class="container-fluid">
+        <br>
+        
+        <table border="1" width="100%">
+          <tr background="black">
+            <th>UserID</th><th>Campaign</th><th>List#</th>
+            <th>Company</th><th>Co Phone</th><th>City</th>
+            <th>State</th><th>Full Name</th><th>Title</th>
+            <th>Show</th><th>Edit</th><th>Delete</th>
+          </tr>
+          <% @prospects.each do |p| %>
+          <tr>
+            <td><%= p.user_id %></td><td><%= p.campaign %></td><td><%= p.list_number %></td>
+            <td><%= p.company %></td><td><%= p.company_phone %></td><td><%= p.city %></td>
+            <td><%= p.state %></td><td><%= p.first_name %> <%= p.last_name %></td><td><%= p.title %></td>
+            <td><%= link_to 'Show', p, class: "btn btn-default btn-xs" %></td>
+            <td><%= link_to "Edit", edit_prospect_path(p), class: "btn btn-warning btn-xs" %></td>
+            <td><%= link_to "Delete", p, method: :delete, data: { confirm: 'Are you sure?'}, class: "btn btn-danger btn-xs" %></td>
+          </tr>
+          <% end %>
+        </table>
+        <br>
+
+      </div>
+      <div class="panel-footer">
+        <div class="btn-toolbar">
+        <%= link_to 'New Prospect', new_prospect_path, class: "btn btn-primary"%>
+        </div>
+      </div>
+    </div>
+  </div>

@@ -1,0 +1,42 @@
+    <div class="panel panel-default col-md-6 pull-right" id="panel-container">
+      <div class="panel-heading">
+        <h2 class="panel-title">Activity Leaderboard</h2>
+      </div>
+        
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-xs-6">
+            User:  <%= current_user.first_name %> <%= current_user.last_name %>
+          </div>
+          <div class="col-xs-6">
+            Signed in: <%= current_user.current_sign_in_at.strftime("%m/%d/%y at %I:%M %p") %>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-6">
+            Username: <%= current_user.username %>
+          </div>
+          <div class="col-xs-6">
+            Last Sign in: <%= current_user.last_sign_in_at.strftime("%m/%d/%y at %I:%M %p") %>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-6">
+            Signed up: <%= current_user.created_at.strftime("%m/%d/%y at %I:%M %p") %>
+          </div>
+          <div class="col-xs-6">
+            Times Signed in: <%= current_user.sign_in_count %>
+          </div>
+        </div>
+        
+        <div class="row">
+          <div class="col-xs-12">
+            Activity Leaderboard will be here
+          </div>
+        </div>
+      </div>
+
+        <div class="panel-footer">
+          Footer
+        </div>
+      </div>

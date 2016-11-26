@@ -2,6 +2,10 @@
 
 <div id="agent-view">
   <div class="container-fluid">
+    
+    
+    
+    
     <div class="panel panel-default col-md-6" id="panel-container">
       <div class="panel-heading">
        <div class="col-xs-12"><h6 align="right">Campaign: <%= @prospect.campaign %> | List#: <%= @prospect.list_number %></h6></div>
@@ -46,14 +50,14 @@
           </div>
           <div class="col-xs-2">
             <div class="btn-group">
-              <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-user"></span><span class="caret"></span>
+              <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-user"></span><span class="caret"></span>
               </button>
               <ul class="dropdown-menu dropdown-menu-right">
                 <% if @prospect.first_name.present? %>
                   <li><a data-target="#contact1" data-toggle="collapse">
                   <%= @prospect.title %> - <%= @prospect.first_name %> <%= @prospect.last_name %></a></li>
                   <% else %>
-                    <li><a href="#contact1" data-toggle="collapse">Add Contact1</li>
+                    <li><%= link_to "Add Contact 1", edit_contacts_path(@prospect.id) %></li>
                 <% end %>
                 <% if @prospect.first_name_2.present? %>
                   <li><a data-target="#contact2" data-toggle="collapse">
@@ -72,17 +76,28 @@
             </div>
           </div>
         </div>
-        <div class="row">
-          <div class="col-xs-6"><span class="fa fa-phone"></span> <%= @prospect.company_phone %></div>
-          <div class="col-xs-6"></div>
-        </div>
+        <% if @prospect.company_phone.present? %>
+          <div class="row">
+            <div class="col-xs-6"><span class="fa fa-phone"></span> <%= @prospect.company_phone %></div>
+            <div class="col-xs-6"></div>
+          </div>
+        <% end %>
         <div class="row">
           <div class="col-xs-6"><%= @prospect.address %></div>
           <div class="col-xs-6"><%= @prospect.address2 %></div>
         </div>
         <div class="row">
-          <div class="col-xs-6"><%= @prospect.city %>, <%= @prospect.state %> <%= @prospect.zip %></div>
-          <div class="col-xs-6"><%= @prospect.county %> County</div>
+          <div class="col-xs-6"><%= @prospect.city %>
+            <% if @prospect.state.present? %>
+              , <%= @prospect.state %>
+            <% end %>
+              <%= @prospect.zip %>
+          </div>
+          <div class="col-xs-6">
+            <% if @prospect.county.present? %>
+              <%= @prospect.county %> County
+            <% end %>
+          </div>
         </div>
         <div class="row">
           <div class="col-xs-6">
@@ -112,15 +127,14 @@
 <!--(The following row should only appear based on status chosen)-->
         <% if @prospect.status == "appointment" %>
           <div class="row">
-            <div class="col-xs-2"></div>
-            <div class="col-xs-10">An <strong><%= @prospect.status %></strong> is scheduled for 
+            <div class="col-xs-12"><strong>Appointment</strong> scheduled for 
             <strong><%= @prospect.eventdatetime.strftime("%m/%d/%y at %I:%M %p") %></strong></div>
           </div>
         <% end %>
         <% if @prospect.status == "follow-up" %>
           <div class="row">
             <div class="col-xs-1"></div>
-            <div class="col-xs-11">You need to <strong><%= @prospect.status %></strong> on 
+            <div class="col-xs-11">Must <strong>Follow up </strong> on 
             <strong><%= @prospect.eventdatetime.strftime("%m/%d/%y at %I:%M %p") %></strong></div>
           </div>
         <% end %>
@@ -394,95 +408,153 @@
               <span class="fa fa-close"></span></a>
           </div>
         </div>
-        <% if @prospect.numberofemployees.present? || @prospect.fax.present? %>
-          <div class="row">
-            <div class="col-xs-6">
-            # of Empl: <%= @prospect.numberofemployees %></div>
+        <div class="row">
+          <% if @prospect.numberofemployees.present? %>
+            <div class="col-xs-6"># of Empl: <%= @prospect.numberofemployees %></div>
+          <% end %>
+          <% if @prospect.fax.present? %>
             <div class="col-xs-6">Fax: <%= @prospect.fax %></div>
-          </div>
-        <% end %>
-        <% if @prospect.sic.present? || @prospect.source.present? %>
-          <div class="row">
+          <% end %>
+
+          <% if @prospect.sic.present? %>
             <div class="col-xs-6">sic: <%= @prospect.sic %></div>
+          <% end %>
+          <% if @prospect.source.present? %>
             <div class="col-xs-6">Source: <%= @prospect.source %></div>
-          </div>
-        <% end %>
-        <% if @prospect.other1.present? || @prospect.other2.present? %>
-          <div class="row">
+          <% end %>
+
+          <% if @prospect.other1.present? %>
             <div class="col-xs-6">Other 1: <%= @prospect.other1 %></div>
+          <% end %>
+          <% if @prospect.other2.present? %>
             <div class="col-xs-6">Other 2: <%= @prospect.other2 %></div>
-          </div>
-        <% end %>
-        <% if @prospect.other3.present? || @prospect.other4.present? %>
-          <div class="row">
+          <% end %>
+
+          <% if @prospect.other3.present? %>
             <div class="col-xs-6">Other 3: <%= @prospect.other3 %></div>
+          <% end %>
+          <% if @prospect.other4.present? %>
             <div class="col-xs-6">Other 4: <%= @prospect.other4 %></div>
-          </div>
-        <% end %>
-        <% if @prospect.other5.present? || @prospect.other6.present? %>
-          <div class="row">
+          <% end %>
+
+          <% if @prospect.other5.present? %>
             <div class="col-xs-6">Other 5: <%= @prospect.other5 %></div>
+          <% end %>
+          <% if @prospect.other6.present? %>
             <div class="col-xs-6">Other 6: <%= @prospect.other6 %></div>
-          </div>
-        <% end %>
-        <% if @prospect.other7.present? || @prospect.other8.present? %>
-          <div class="row">
+          <% end %>
+
+          <% if @prospect.other7.present? %>
             <div class="col-xs-6">Other 7: <%= @prospect.other7 %></div>
+          <% end %>
+          <% if @prospect.other8.present? %>
             <div class="col-xs-6">Other 8: <%= @prospect.other8 %></div>
-          </div>
+          <% end %>
+        </div>
+
+        <div class="row">
+          <div class="col-xs-6">User: <%= current_user.first_name %> <%= current_user.last_name %></div>
+        </div>
+      </div>
+
+  <!--Fields for dispositioning results of interaction with prospective company-->
+  <%= form_for(@prospect) do |f| %>
+    <% if @prospect.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@prospect.errors.count, "error") %> prohibited this prospect from being saved:</h2>
+        <ul>
+          <% @prospect.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
         <% end %>
-        <div class="row">
-          <div class="col-xs-6">User: <%= current_user.first_name %> <%= current_user.last_name %>
-</div>
-        </div>
+        </ul>
       </div>
-
-
-<!--Fields for dispositioning results of interaction with prospective company-->
-      <div id="result" class="collapse">
-        <div class="row">
-          <div class="col-xs-12"><hr></div>
-        </div>
-        <div class="row">
-          <div class="col-xs-10"></div>
-          <div class="col-xs-2">
-            <a href="#result" data-toggle="collapse" class="btn btn-default btn-xs" type="button" >
-              <span class="fa fa-close"></span></a>
+    <% end %>
+        <div id="result-form" class="collapse">
+          <div class="row">
+            <div class="col-xs-12"><hr></div>
+          </div>
+          <div class="row">
+            <div class="col-xs-10"></div>
+              <a href="#result" data-toggle="collapse" class="btn btn-default btn-xs" type="button" >
+                <span class="fa fa-close"></span></a>
+          </div>
+          <div class="row">
+            <div class="col-xs-4">Note: </div>
+            <div class="col-xs-8">New note field here</div>
+          </div>
+  
+          <div class="row"> 
+            <div class="col-xs-4">
+                <input type="radio" name="prospect[status]" value="appointment" data-toggle="collapse" data-target="#eventdatetime">
+              <%= f.label :status, 'Appt Set' %>
+            </div>
+            <div class="col-xs-4">
+                <input type="radio" name="prospect[status]" value="follow-up" data-toggle="collapse" data-target="#eventdatetime">
+              <%= f.label :status, 'Follow-up' %>
+            </div>
+            <div class="col-xs-4">
+              <%= f.radio_button :status, 'no-pitch' %>
+              <%= f.label :status, 'No Pitch' %>
+            </div>
+          </div>
+          <div class="row">        
+            <div class="col-xs-4">
+              <%= f.radio_button :status, 'not-qualified' %>
+              <%= f.label :status, 'Not Qual' %>
+            </div>
+            <div class="col-xs-4">
+              <%= f.radio_button :status, 'bad-record' %>
+              <%= f.label :status, 'Bad Rec' %>
+            </div>
+            <div class="col-xs-4">
+              <%= f.radio_button :status, 'not-interested' %>
+              <%= f.label :status, 'Not Int' %>
+            </div>
+          </div>
+  
+  <!--(The following row should only appear based on result chosen)-->
+          <div id="eventdatetime" class="collapse">
+            <div class="row">
+              <div class="form-group col-xs-12">
+              <%= f.label :eventdatetime, 'Date & Time' %><br>
+              <%= f.datetime_select :eventdatetime, order: [:month, :day, :year], use_two_digit_numbers: true, ampm: true, start_year: 2016, prompt: { month: 'Mth', day: 'Day', year: 'Year', hour: 'Hour', minute: 'Min' } %>
+              </div>
+            </div>
+          </div>
+          
+  <!--(The following should not be visable)-->
+          <div class="row">
+            <div class="col-xs-12"><em>(Coordinates, address where dispositioned at and time on call will be passed in hidden fields)</em></div>
+          </div>
+  <!--(The following row should not be visable)-->
+          <div class="row">
+            <div class="col-xs-6">Time on Contact: </div>
+            <div class="col-xs-8"><%= @prospect.time_on_contact %></div>
           </div>
         </div>
-        <div class="row">
-          <div class="col-xs-4">Note: </div>
-          <div class="col-xs-8">New note field goes here</div>
-        </div>
-
-        <div class="row">
-          <div class="col-xs-12">Disposition Form Fields Go Here</div>
-        </div>
-        <div class="row">
-          <div class="col-xs-12">Event Date & Time Fields Go Here</div>
-        </div>
-
-<!--(The following row should not be visable)-->
-        <div class="row">
-          <div class="col-xs-4">(Location Coordinates)</div>
-          <div class="col-xs-8">(Location Address)</div>
-        </div>
-<!--(The following row should not be visable)-->
-        <div class="row">
-          <div class="col-xs-4">Time on Contact: </div>
-          <div class="col-xs-8"><%= @prospect.time_on_contact %></div>
-        </div>
-      </div>
-
       </div>
       <div class="panel-footer">
-        <div class="btn-toolbar">
-          <a href="#result" class="btn btn-success" role="button" data-toggle="collapse">Result</a>
-          <a href="#more" class="btn btn-info" role="button" data-toggle="collapse">More</a>
-          <%= link_to "Edit", edit_prospect_path(@prospect), class: "btn btn-warning" %>   
-          <%= link_to "Delete", @prospect, method: :delete, data: { confirm: 'Are you sure you want to delete Prospect?'}, class: "btn btn-danger" %>
+        <div id="result-toolbar" class="collapse">
+          <div class="btn-toolbar">
+            <a data-target="#result-form,#result-toolbar,#default-toolbar" class="btn btn-default" role="button" data-toggle="collapse">Back</a>
+  
+            <%= f.submit 'Disposition', class: "btn btn-primary pull-right" %>
+          </div>
+        </div>
+        <div id="default-toolbar" class="collapse in">
+          <div class="btn-toolbar">
+            <a data-target="#result-form,#result-toolbar,#default-toolbar" class="btn btn-success" role="button" data-toggle="collapse">Result</a>
+            <a href="#more" class="btn btn-info" role="button" data-toggle="collapse">More</a>
+            <%= link_to "Edit", edit_prospect_path(@prospect), class: "btn btn-warning" %>   
+            <%= link_to "Delete", @prospect, method: :delete, data: { confirm: 'Are you sure you want to delete Prospect?'}, class: "btn btn-danger" %>
+          </div>
         </div>
       </div>
     </div>
+<% end %>
+
+
+    <%= render 'shared/leaderboard' %>
+      
   </div>
 </div>

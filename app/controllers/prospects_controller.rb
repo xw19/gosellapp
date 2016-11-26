@@ -3,7 +3,16 @@ class ProspectsController < ApplicationController
   before_filter :authenticate_user!, :except => [:home]
 
   def index
-     @prospects = Prospect.all
+    @prospects = Prospect.all
+    respond_to do |format|
+      format.html
+      format.csv { send_data @prospects.to_csv(['user_id', 'campaign', 'list_number', 'source', 'company_phone', 'company', 'first_name', 'last_name', 'title', 'address', 'address2', 'city', 'state', 'zip', 'county', 'fax', 'numberofemployees', 'website', 'sic']) }
+    end
+  end
+
+  def import
+    Prospect.import(params[:file])
+    redirect_to root_url, notice: "Prospects imported."
   end
 
   def show

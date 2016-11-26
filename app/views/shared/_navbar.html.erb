@@ -21,7 +21,7 @@
               <li><%= link_to "Manual", prospects_path %></li>
             </ul>
           </li>
-          <li><%= link_to 'Edit User Profile', edit_user_registration_path, method: :get %></li>
+          <li><%= link_to raw("<i class=\"fa fa-gear\"></i> User Settings"), edit_user_registration_path, method: :get %></li>
           <li><%= link_to 'Sign Out', destroy_user_session_path, method: :delete %></li>
           <% end %>
           <% if !user_signed_in? %>

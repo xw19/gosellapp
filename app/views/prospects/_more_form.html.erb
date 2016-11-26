@@ -1,3 +1,5 @@
+<% provide(:title, "Making Sales a Competitive Sport") %>
+
 <%= form_for(@prospect) do |f| %>
   <% if @prospect.errors.any? %>
     <div id="error_explanation">
@@ -14,7 +16,7 @@
   <div class="container-fluid">
     <div class="panel panel-default col-md-6" id="panel-container">
       <div class="panel-heading">
-        <div class="col-xs-12"><h6 align="right">Campaign: <%= @prospect.campaign %> | List#: <%= @prospect.list_number %></h6></div>
+        <div class="col-xs-12"><h6 align="right"><%= current_user.first_name %> <%= current_user.last_name %> | Campaign: <%= @prospect.campaign %> | List#: <%= @prospect.list_number %></h6></div>
         <h2 class="panel-title"><%= @prospect.company %></h2>
       </div>
       <div class="container-fluid">
