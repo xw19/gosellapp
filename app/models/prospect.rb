@@ -1,6 +1,7 @@
 class Prospect < ApplicationRecord
   belongs_to :user
   has_many :notes
+  validates :company, presence: true
   
   def self.to_csv(fields = column_names, options = {})
     CSV.generate(options) do |csv|
@@ -19,12 +20,3 @@ class Prospect < ApplicationRecord
     end
   end
 end
-
-
-
-
-
-
-
-
-
