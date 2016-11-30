@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   resources :prospects do
     collection { post :import }
+    resources :results, only: [:create, :edit, :update, :destroy]
   end
 
   devise_for :users

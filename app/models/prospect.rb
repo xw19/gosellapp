@@ -1,6 +1,7 @@
 class Prospect < ApplicationRecord
-  belongs_to :user
+  belongs_to :user, required: true
   has_many :notes
+  has_many :results
   validates :company, presence: true
   
   def self.to_csv(fields = column_names, options = {})

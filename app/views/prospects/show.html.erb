@@ -120,20 +120,8 @@
           <div class="col-xs-2">Notes: </div>
           <div class="col-xs-10">Notes should be listed here and visible without expanding</div>
         </div>
-<!--(The following row should only appear based on status chosen)-->
-        <% if @prospect.status == "appointment" %>
-          <div class="row">
-            <div class="col-xs-12"><strong>Appointment</strong> scheduled for 
-            <strong><%= @prospect.eventdatetime.strftime("%m/%d/%y at %I:%M %p") %></strong></div>
-          </div>
-        <% end %>
-        <% if @prospect.status == "follow-up" %>
-          <div class="row">
-            <div class="col-xs-1"></div>
-            <div class="col-xs-11">Must <strong>Follow up </strong> on 
-            <strong><%= @prospect.eventdatetime.strftime("%m/%d/%y at %I:%M %p") %></strong></div>
-          </div>
-        <% end %>
+<!--(The following row should only appear based if the last disposition was appointment or follow-up)-->
+
 
 
       <div id="contact1" class="collapse">
@@ -453,102 +441,26 @@
         </div>
       </div>
 
-  <!--Fields for dispositioning results of interaction with prospective company-->
-  <%= form_for(@prospect) do |f| %>
-    <% if @prospect.errors.any? %>
-      <div id="error_explanation">
-        <h2><%= pluralize(@prospect.errors.count, "error") %> prohibited this prospect from being saved:</h2>
-        <ul>
-          <% @prospect.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-        </ul>
-      </div>
-    <% end %>
-        <div id="result-form" class="collapse">
-          <div class="row">
-            <div class="col-xs-12"><hr></div>
-          </div>
-          <div class="row">
-            <div class="col-xs-10"></div>
-              <a href="#result" data-toggle="collapse" class="btn btn-default btn-xs" type="button" >
-                <span class="fa fa-close"></span></a>
-          </div>
-          <div class="row">
-            <div class="col-xs-4">Note: </div>
-            <div class="col-xs-8">New note field here</div>
-          </div>
-  
-          <div class="row"> 
-            <div class="col-xs-4">
-                <input type="radio" name="prospect[status]" value="appointment" data-toggle="collapse" data-target="#eventdatetime">
-              <%= f.label :status, 'Appt Set' %>
-            </div>
-            <div class="col-xs-4">
-                <input type="radio" name="prospect[status]" value="follow-up" data-toggle="collapse" data-target="#eventdatetime">
-              <%= f.label :status, 'Follow-up' %>
-            </div>
-            <div class="col-xs-4">
-              <%= f.radio_button :status, 'no-pitch' %>
-              <%= f.label :status, 'No Pitch' %>
-            </div>
-          </div>
-          <div class="row">        
-            <div class="col-xs-4">
-              <%= f.radio_button :status, 'not-qualified' %>
-              <%= f.label :status, 'Not Qual' %>
-            </div>
-            <div class="col-xs-4">
-              <%= f.radio_button :status, 'bad-record' %>
-              <%= f.label :status, 'Bad Rec' %>
-            </div>
-            <div class="col-xs-4">
-              <%= f.radio_button :status, 'not-interested' %>
-              <%= f.label :status, 'Not Int' %>
-            </div>
-          </div>
-  
-  <!--(The following row should only appear based on result chosen)-->
-          <div id="eventdatetime" class="collapse">
-            <div class="row">
-              <div class="form-group col-xs-12">
-              <%= f.label :eventdatetime, 'Date & Time' %><br>
-              <%= f.datetime_select :eventdatetime, order: [:month, :day, :year], use_two_digit_numbers: true, ampm: true, start_year: 2016, prompt: { month: 'Mth', day: 'Day', year: 'Year', hour: 'Hour', minute: 'Min' } %>
-              </div>
-            </div>
-          </div>
-          
-  <!--(The following should not be visable)-->
-          <div class="row">
-            <div class="col-xs-12"><em>(Coordinates, address where dispositioned at and time on call will be passed in hidden fields)</em></div>
-          </div>
-  <!--(The following row should not be visable)-->
-          <div class="row">
-            <div class="col-xs-6">Time on Contact: </div>
-            <div class="col-xs-8"><%= @prospect.time_on_contact %></div>
-          </div>
-        </div>
-      </div>
-      <div class="panel-footer">
-        <div id="result-toolbar" class="collapse">
-          <div class="btn-toolbar">
-            <a data-target="#result-form,#result-toolbar,#default-toolbar" class="btn btn-default" role="button" data-toggle="collapse">Back</a>
-  
-            <%= f.submit 'Disposition', class: "btn btn-primary pull-right" %>
-          </div>
-        </div>
+        
+        <%= render "results_form" %>
+
+
+    <div class="row">
+      <div class="col-xs-4">Note: </div>
+      <div class="col-xs-8"><%= text_field_tag :detail, class: "form-control" %></div>
+    </div>
+
+        
         <div id="default-toolbar" class="collapse in">
           <div class="btn-toolbar">
-            <a data-target="#result-form,#result-toolbar,#default-toolbar" class="btn btn-success" role="button" data-toggle="collapse">Result</a>
             <a href="#more" class="btn btn-info" role="button" data-toggle="collapse">More</a>
             <%= link_to "Edit", edit_prospect_path(@prospect), class: "btn btn-warning" %>   
             <%= link_to "Delete", @prospect, method: :delete, data: { confirm: 'Are you sure you want to delete Prospect?'}, class: "btn btn-danger" %>
+            <a data-target="#result-form,#result-toolbar,#default-toolbar" class="btn btn-success pull-right" role="button" data-toggle="collapse">Result</a>
           </div>
         </div>
       </div>
     </div>
-<% end %>
-
 
     <%= render 'shared/leaderboard' %>
       

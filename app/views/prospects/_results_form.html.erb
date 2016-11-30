@@ -1,0 +1,93 @@
+<!--This form should only appear when clicking on the "Result" button-->
+
+<%= form_for(@prospect) do |f| %>
+  <% if @prospect.errors.any? %>
+    <div id="error_explanation">
+      <p class="alert alert-danger"><%= pluralize(@prospect.errors.count, "error") %> prohibited this result from being saved:</p>
+
+      <ul>
+      <% @prospect.errors.full_messages.each do |message| %>
+        <p class="alert alert-danger"><em>&nbsp; * <%= message %></em></p>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div id="result-form" class="collapse"
+    <div class="row">
+      <div class="col-xs-12"><hr></div>
+    </div>
+    <div class="row">
+      <div class="col-xs-10"></div>
+        <a href="#result" data-toggle="collapse" class="btn btn-default btn-xs" type="button" >
+          <span class="fa fa-close"></span></a>
+    </div>
+
+
+    <!--The following row is for new Notes FORM which will only have the "detail" field-->
+    <div class="row">
+      <div class="col-xs-4">Note: </div>
+      <div class="col-xs-8"><%= f.text_field :detail, class: "form-control" %></div>
+    </div>
+    
+    <!--The following two rows are for the disposition radio buttons-->
+    <div class="row"> 
+      <div class="col-xs-4">
+          <input type="radio" name="prospect[disposition]" value="appointment" data-toggle="collapse" data-target="#event">
+        <%= f.label :disposition, 'Appt Set' %>
+      </div>
+      <div class="col-xs-4">
+          <input type="radio" name="prospect[disposition]" value="follow-up" data-toggle="collapse" data-target="#event">
+        <%= f.label :disposition, 'Follow-up' %>
+      </div>
+      <div class="col-xs-4">
+        <%= f.radio_button :disposition, 'no-pitch' %>
+        <%= f.label :disposition, 'No Pitch' %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-4">
+        <%= f.radio_button :disposition, 'not-qualified' %>
+        <%= f.label :disposition, 'Not Qual' %>
+      </div>
+      <div class="col-xs-4">
+        <%= f.radio_button :disposition, 'bad-record' %>
+        <%= f.label :disposition, 'Bad #/Rec' %>
+      </div>
+      <div class="col-xs-4">
+        <%= f.radio_button :disposition, 'not-interested' %>
+        <%= f.label :disposition, 'Not Int' %>
+      </div>
+    </div>
+  
+  <!--(The following row should only appear if "Appt Set" or Follow-up" are chosen)-->
+    <div id="event" class="collapse">
+      <div class="row">
+        <div class="form-group col-xs-12">
+        <%= f.label :event, 'Date & Time' %><br>
+        <%= f.datetime_select :event, order: [:month, :day, :year], use_two_digit_numbers: true, ampm: true, start_year: 2016, prompt: { month: 'Mth', day: 'Day', year: 'Year', hour: 'Hour', minute: 'Min' } %>
+        </div>
+      </div>
+    </div>
+          
+      <!--The following data will be passed but the row should not be visable-->
+      <div class="row cant-see-me">
+        <%= f.hidden_field :accessible, value: "true" %>
+        <%= f.hidden_field :activity, value: "activity-test" %>
+        <%= f.hidden_field :location, value: "location-test" %>
+        <%= f.hidden_field :time_on_contact, value: "toc-test" %>
+        <%= f.hidden_field :prospect_id, value: @prospect.id %>
+        <%= f.hidden_field :user_id, value: current_user.id %>
+      </div>
+
+
+  </div>
+    </div>
+    <div class="panel-footer">
+      <div id="result-toolbar" class="collapse">
+        <div class="btn-toolbar">
+          <a data-target="#result-form,#result-toolbar,#default-toolbar" class="btn btn-default" role="button" data-toggle="collapse">Back</a>
+          <%= f.submit 'Disposition', class: "btn btn-primary pull-right" %>
+        </div>
+      </div>
+      <% end %>
+    

@@ -21,19 +21,9 @@ body {
   background-color: lavender;
 }
 
-#logo {
-  float: left;
-  margin-right: 10px;
-  font-size: 1.7em;
-  color: white;
-  font-style: italic;
-  letter-spacing: -1px;
-  font-weight: bold;
-  &:hover {
-  color: white;
-  text-decoration: none;
-  }
-}
+.navbar-brand { 
+  padding: 8px 15px;
+} 
 
 #footer .navbar { 
   min-height:20px !important;

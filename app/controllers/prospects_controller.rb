@@ -1,5 +1,6 @@
 class ProspectsController < ApplicationController
   before_action :set_prospect, only: [:show, :edit, :edit_contacts, :update, :destroy]
+  skip_before_action :verify_authenticity_token
   before_filter :authenticate_user!, :except => [:home]
 
   def index
@@ -16,6 +17,8 @@ class ProspectsController < ApplicationController
   end
 
   def show
+    @result = Result.new
+    @note = Note.new
   end
   
   def new
