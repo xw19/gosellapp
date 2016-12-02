@@ -1,7 +1,9 @@
 class Prospect < ApplicationRecord
   belongs_to :user, required: true
   has_many :notes
+  accepts_nested_attributes_for :notes, allow_destroy: true
   has_many :results
+  accepts_nested_attributes_for :results, allow_destroy: true
   validates :company, presence: true
   
   def self.to_csv(fields = column_names, options = {})

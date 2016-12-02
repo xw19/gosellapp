@@ -1,8 +1,11 @@
 Rails.application.routes.draw do
   resources :prospects do
+    post "disposition"
     collection { post :import }
     resources :results, only: [:create, :edit, :update, :destroy]
   end
+
+  get "update_accessible" => "results#update_accessible"
 
   devise_for :users
   root 'prospects#index'

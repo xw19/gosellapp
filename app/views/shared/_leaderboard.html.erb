@@ -28,7 +28,25 @@
             Times Signed in: <%= current_user.sign_in_count %>
           </div>
         </div>
-        
+
+        <div class="row">
+          <div class="col-xs-6">
+            This record was dispositioned <%= @prospect.results.count %> times.
+          </div>
+          <div class="col-xs-6">
+            Times Signed in: <%= current_user.sign_in_count %>
+          </div>
+        </div>
+
+<div class="row">
+  <div class="col-xs-6">Last disposition: <%= @prospect.results.last.disposition %></div>
+  <div class="col-xs-6">Last disposition by user: <%= User.first.results.last.disposition %></div>
+</div>
+
+
+
+
+
         <div class="row">
           <div class="col-xs-12">
             Activity Leaderboard will be here

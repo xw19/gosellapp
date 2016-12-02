@@ -17,3 +17,19 @@
 
 // Creating the plugin
 
+window.onload = function() {
+  $.ajax({
+    type: "GET",
+    url: "/update_accessible",
+    data: {
+      result_id: $("#result").val(),
+      prospect_id: $("#prospect").val()
+    },
+      dataType: "json"
+    }).done(function (data) {
+      console.log("successfully updated accessible")
+      }
+    }).fail(function() {
+  alert("failed to update accessible");
+  });
+}

@@ -10,7 +10,16 @@ class ResultsController < ApplicationController
       end
     end
   end
-  
+
+# This code, along with the Javascript is meant to set the value of
+# accessible to false upon page load however it is not currently
+# working and we should probably move acessible to Prospect
+  def update_accessible
+    @result = Result.find(params[:result_id])
+    @result.update_attribute(accessible: true)
+    respond_with @result
+  end
+
   private
   def result_params
       params.require(:result).permit(:disposition, :accessible, :event, :location, :prospect_id, :user_id)
