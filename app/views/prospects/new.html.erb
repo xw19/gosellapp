@@ -5,7 +5,7 @@
     <div id="error_explanation">
       <p class="alert alert-danger"><%= pluralize(@prospect.errors.count, "error") %> prohibited this prospect from being saved:</p>
         <% @prospect.errors.full_messages.each do |message| %>
-        <p class="alert alert-danger"><em>&nbsp; * <%= message %></em></p>
+      <p class="alert alert-danger"><em>&nbsp; * <%= message %></em></p>
       <% end %>
     </div>
   <% end %>
@@ -16,9 +16,20 @@
       <div class="panel-heading">
         <h2 class="panel-title">Add New Prospect</h2>
       </div>
+      
       <div class="container-fluid">
+        
         <div class="cant-see-me">
           <%= f.hidden_field :user_id, value: current_user.id %>
+        </div>
+
+        <div class="row center" style="background: gold;">
+          <div class="form-group col-xs-12 center" style="background: gold;">
+            Use your phone's camera to Scan Business Card <i class="fa fa-camera"></i>
+          </div>
+          <div class="col-xs-12" style="background: gold;">
+            <input type="file" accept="image/*" capture="camera">
+          </div>
         </div>
         
         <div class="row">
@@ -103,11 +114,16 @@
       </div>
       <div class="panel-footer">
         <div class="btn-toolbar">
-          <%= link_to 'Back', prospects_path, class: "btn btn-default" %>
-          <%= f.submit class: "btn btn-primary pull-right" %>
+          <div class="col-xs-6">
+          <%= link_to 'Back', prospects_path, class: "btn btn-default btn-block" %>
+          </div>
+          <div class="col-xs-6">
+          <%= f.submit class: "btn btn-primary btn-block pull-right" %>
+          </div>
+          <% end %>
         </div>
       </div>
     </div>
+
   </div>
 </div>
-<% end %>

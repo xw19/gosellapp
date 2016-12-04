@@ -4,7 +4,12 @@ class ProspectsController < ApplicationController
   before_filter :authenticate_user!, :except => [:home]
 
   def index
-    @prospects = Prospect.all
+    if params[:list_number] == nil
+      @prospects = Prospect.all
+      else
+        @prospects = Prospect.where(list_number: params[:list_number])
+    end
+      @goList = Prospect.select(:list_number).order(:list_number).distinct
     respond_to do |format|
       format.html
       format.csv { send_data @prospects.to_csv(['user_id', 'campaign', 'list_number', 'source', 'company_phone', 'company', 'first_name', 'last_name', 'title', 'address', 'address2', 'city', 'state', 'zip', 'county', 'fax', 'numberofemployees', 'website', 'sic']) }
@@ -35,6 +40,10 @@ class ProspectsController < ApplicationController
       end
     end
   end  
+
+  def menu
+    @note = Note.new
+  end
 
   def edit
   end

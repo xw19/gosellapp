@@ -97,9 +97,13 @@
 
     <div class="panel-footer">
       <div id="result-toolbar" class="collapse">
-        <div class="btn-toolbar">
-          <a data-target="#result-form,#result-toolbar,#default-toolbar" class="btn btn-default" role="button" data-toggle="collapse">Back</a>
-          <%= f.submit 'Disposition', class: "btn btn-primary pull-right" %>
+        <div class="row">
+          <div class="col-xs-6">
+            <a data-target="#result-form,#result-toolbar,#default-toolbar" class="btn btn-default" role="button" data-toggle="collapse">Back</a>
+          </div>
+          <div class="col-xs-6">
+            <%= f.submit 'Disposition', class: "btn btn-primary btn-block" %>
+          </div>
         </div>
       </div>
 <% end %>
