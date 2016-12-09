@@ -55,7 +55,7 @@
           </div>
         </div>
         <div class="row">
-          <div class="form-group col-xs-3">
+          <div class="form-group col-xs-6">
             <%= f.label :city %>
             <%= f.text_field :city, class: "form-control" %>
           </div>
@@ -67,14 +67,10 @@
             <%= f.label :zip %>
             <%= f.text_field :zip, class: "form-control" %>
           </div>
-          <div class="form-group col-xs-3">
-            <%= f.label :county %>
-            <%= f.text_field :county, class: "form-control" %>
-          </div>
-          <div class="row">
-            <div class="col-xs-12 center">
-              <a href="#more" class="btn btn-info btn-xs" role="button" data-toggle="collapse">More Prospect Company Info Fields</a><br>&nbsp;
-            </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12 center">
+            <a href="#more" class="btn btn-info gradient round raised btn-xs" role="button" data-toggle="collapse">More Prospect Company Info Fields</a><br>&nbsp;
           </div>
         </div>
 
@@ -86,7 +82,7 @@
           <div class="row">
             <div class="col-xs-10"></div>
             <div class="col-xs-2">
-              <a href="#more" data-toggle="collapse" class="btn btn-default btn-xs" type="button" >
+              <a href="#more" data-toggle="collapse" class="btn btn-warning round raised btn-xs" type="button" >
               <span class="fa fa-close"></span></a>
             </div>
           </div>
@@ -97,8 +93,8 @@
               <%= f.text_field :numberofemployees, class: "form-control" %>
             </div>
             <div class="form-group col-xs-6">
-              <%= f.label :fax %>
-              <%= f.text_field :fax, class: "form-control" %>
+              <%= f.label :county %>
+              <%= f.text_field :county, class: "form-control" %>
             </div>
           </div>
           
@@ -109,8 +105,8 @@
               <%= f.text_field :sic, class: "form-control" %>
             </div>
             <div class="form-group col-xs-6">
-              <%= f.label :source %>
-              <%= f.text_field :source, class: "form-control" %>
+              <%= f.label :fax %>
+              <%= f.text_field :fax, class: "form-control" %>
             </div>
           </div>
           <div class="row">
@@ -154,15 +150,22 @@
             </div>
           </div>
           <div class="row">
-            <div class="col-xs-6">User ID: <%= @prospect.user_id %></div>
+            <div class="col-xs-6">
+              <strong>User ID</strong><br>
+              <%= @prospect.user_id %>
+            </div>
+            <div class="form-group col-xs-6">
+              <%= f.label :source %>
+              <%= f.text_field :source, class: "form-control" %>
+            </div>
           </div>
         </div>
       </div>
       <div class="panel-footer">
         <div class="btn-toolbar">
-          <%= link_to 'Cancel', @prospect, class: "btn btn-default" %>
-          <%= link_to "Delete", @prospect, method: :delete, data: { confirm: 'Are you sure you want to delete Prospect?'}, class: "btn btn-danger" %>
-          <%= f.submit class: "btn btn-primary" %>
+          <%= link_to 'Cancel', @prospect, class: "btn btn-default gradient round raised btn-sm" %>
+          <%= link_to "Delete", @prospect, method: :delete, data: { confirm: 'Are you sure you want to delete Prospect?'}, class: "btn btn-danger gradient round raised btn-sm" %>
+          <%= f.submit class: "btn btn-primary gradient round raised pull-right" %>
         </div>
       </div>
     </div>

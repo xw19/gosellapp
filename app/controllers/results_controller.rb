@@ -11,6 +11,10 @@ class ResultsController < ApplicationController
     end
   end
 
+  def new
+    @result = Result.new
+  end
+  
 # This code, along with the Javascript is meant to set the value of
 # accessible to false upon page load however it is not currently
 # working and we should probably move acessible to Prospect

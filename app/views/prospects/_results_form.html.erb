@@ -19,14 +19,14 @@
     </div>
     <div class="row">
       <div class="col-xs-10"></div>
-      <div class="col-xs-2"><a data-target="#result-form,#result-toolbar,#default-toolbar" class="btn btn-default btn-xs" role="button" data-toggle="collapse"><span class="fa fa-close"></span></a>
+      <div class="col-xs-2"><a data-target="#result-form,#result-toolbar,#default-toolbar" class="btn btn-warning round raised btn-xs" role="button" data-toggle="collapse"><span class="fa fa-close"></span></a>
       </div>
     </div>
 
 
     <!--The following row is for new Notes FORM which will only have the "detail" field-->
     <div class="row">
-      <div class="col-xs-2">Note: </div>
+      <div class="col-xs-2">Note:</div>
         <%= f.fields_for :notes, @prospect.notes.build do |builder| %>
           <% if builder.object.new_record? %>
             <div class="col-xs-10"><%= builder.text_field :detail, class: "form-control" %></div>
@@ -82,6 +82,7 @@
             </div>
 
           <div id="event" class="collapse">
+            
             <div class="row">
               <div class="form-group col-xs-12">
                 <%= builder_2.label :event, 'Date & Time' %><br>
@@ -99,11 +100,11 @@
       <div id="result-toolbar" class="collapse">
         <div class="row">
           <div class="col-xs-6">
-            <a data-target="#result-form,#result-toolbar,#default-toolbar" class="btn btn-default" role="button" data-toggle="collapse">Back</a>
+            <a data-target="#result-form,#result-toolbar,#default-toolbar" class="btn btn-default round raised btn-sm" role="button" data-toggle="collapse">Back</a>
           </div>
           <div class="col-xs-6">
-            <%= f.submit 'Disposition', class: "btn btn-primary btn-block" %>
+            <%= f.submit 'Disposition', class: "btn btn-primary gradient round raised pull-right" %>
           </div>
         </div>
       </div>
-<% end %>
+    <% end %>

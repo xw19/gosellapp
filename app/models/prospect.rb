@@ -6,6 +6,25 @@ class Prospect < ApplicationRecord
   accepts_nested_attributes_for :results, allow_destroy: true
   validates :company, presence: true
 
+# the following 7 lines for searching by company name
+  def self.search(co)
+    if co
+      where('company LIKE ?', "%#{co}%")
+    else
+      all
+    end
+  end
+
+# the following 7 lines for searching by street name
+  def self.lookup(loc)
+    if loc
+      where('address LIKE ?', "%#{loc}%")
+    else
+      all
+    end
+  end
+
+# the following 8 lines for exporting to csv
   def self.to_csv(fields = column_names, options = {})
     CSV.generate(options) do |csv|
       csv << fields
@@ -15,6 +34,7 @@ class Prospect < ApplicationRecord
     end
   end
 
+# the following 7 lines for importing from csv
   def self.import(file)
     CSV.foreach(file.path, headers: true) do |row|
       prospect_hash = row.to_hash

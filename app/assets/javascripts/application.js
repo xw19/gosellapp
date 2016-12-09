@@ -17,6 +17,7 @@
 
 // Creating the plugin
 
+
 window.onload = function() {
   $.ajax({
     type: "GET",

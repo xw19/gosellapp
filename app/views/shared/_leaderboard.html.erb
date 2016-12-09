@@ -4,6 +4,19 @@
       </div>
         
       <div class="container-fluid">
+        
+        <div class="row">
+          <div class="col-xs-12">        
+            <ul class="nav nav-tabs">
+              <li role="presentation" class="active"><a href="#">Today</a></li>
+              <li role="presentation"><a href="#">This Week</a></li>
+              <li role="presentation"><a href="#">Last 30 Days</a></li>
+            </ul>
+          </div>
+        </div>
+        
+        
+        
         <div class="row">
           <div class="col-xs-6">
             User:  <%= current_user.first_name %> <%= current_user.last_name %>
@@ -22,29 +35,21 @@
         </div>
         <div class="row">
           <div class="col-xs-6">
-            Signed up: <%= current_user.created_at.strftime("%m/%d/%y at %I:%M %p") %>
+            User Signed up on: <%= current_user.created_at.strftime("%m/%d/%y") %>
           </div>
           <div class="col-xs-6">
-            Times Signed in: <%= current_user.sign_in_count %>
+            User Sign-ins: <%= current_user.sign_in_count %>
           </div>
         </div>
 
         <div class="row">
           <div class="col-xs-6">
-            This record was dispositioned <%= @prospect.results.count %> times.
+            Record dispositions <%= @prospect.results.count %>
           </div>
           <div class="col-xs-6">
-            Times Signed in: <%= current_user.sign_in_count %>
+            Last disposition: <%= @prospect.results.last.disposition %>
           </div>
         </div>
-
-
-<div class="row">
-  <div class="col-xs-6">Last disposition: <%= @prospect.results.last.disposition %></div>
-  <div class="col-xs-6">Last disposition by user: <%= User.first.results.last.disposition %></div>
-</div>
-
-
 
         <div class="row">
           <div class="col-xs-12">

@@ -2,7 +2,8 @@
   <div class="container-fluid">
     <div class="panel panel-default col-md-6" id="panel-container">
       <div class="panel-heading">
-        <h2 class="panel-title"><i class="fa fa-gear"></i> <%= resource_name.to_s.humanize %> Settings<%= link_to "Back", :back, class: "btn btn-warning btn-xs pull-right" %></h2>
+        <strong><i class="fa fa-gear"></i> <%= resource_name.to_s.humanize %> Settings</strong>
+        <%= link_to "Back", :back, class: "btn btn-warning btn-sm gradient raised round pull-right" %>
       </div>
       <div class="container-fluid">
       <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
@@ -63,7 +64,7 @@
         </div>
         <div class="row">
           <div class="actions col-xs-12">
-            <%= f.submit "Update", class: "btn btn-primary" %>
+            <%= f.submit "Update", class: "btn btn-primary gradient raised round" %>
           </div>
         </div>
       <% end %>
@@ -72,7 +73,7 @@
 
 <h3>Cancel my account</h3>
 
-<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class: "btn btn-danger" %></p>
+<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class: "btn btn-danger gradient raised round" %></p>
 
 
 
@@ -80,7 +81,7 @@
 
       <div class="panel-footer">
         <div class="btn-toolbar">
-          <%= link_to "Back", :back, class: "btn btn-warning btn-sm pull-right" %>
+          <%= link_to "Back", :back, class: "btn btn-warning gradient raised round btn-sm pull-right" %>
         </div>
       </div>
     </div>

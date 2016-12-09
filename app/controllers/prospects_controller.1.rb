@@ -4,26 +4,22 @@ class ProspectsController < ApplicationController
   before_filter :authenticate_user!, :except => [:home]
 
   def index
-    # Following 1 line for kalinari pagination - below lines using as a method
-    @prospects = Prospect.order("id").page(params[:page]).per(5)
-    
-    # Following 3 lines for serching by street name
-    if params[:loc] != nil
-      @prospects = Prospect.lookup(params[:loc]).page(params[:page]).per(5) 
-    end 
+    # The following 1 line works with kalinari
+    @prospects = Prospect.order("company").page(params[:page]).per(5)
 
-    # Following 3 lines for serching by company name
-    if params[:co] != nil
-      @prospects = Prospect.search(params[:co]).page(params[:page]).per(5)
+  def index
+    @prospects = Prospect.search(params[:term]).page(params[:page]).per(5)
+  end
+
+    # The following 6 lines are for the list number select currenly on the menu page
+    if params[:list_number] == nil
+      @prospects = Prospect.all.page(params[:page]).per(5)
+      else
+        @prospects = Prospect.where(list_number: params[:list_number]).page(params[:page]).per(5)
     end
- 
-    # Following 4 lines selecting by list number
-    if params[:list_number] != nil
-      @prospects = Prospect.where(list_number: params[:list_number]).page(params[:page]).per(5)
       @goList = Prospect.select(:list_number).order(:list_number).distinct
-    end
 
-    # Following 4 lines are for CSV export 
+    # The following 4 lines are for CSV export 
     respond_to do |format|
       format.html
       format.csv { send_data @prospects.to_csv(['user_id', 'campaign', 'list_number', 'source', 'company_phone', 'company', 'first_name', 'last_name', 'title', 'address', 'address2', 'city', 'state', 'zip', 'county', 'fax', 'numberofemployees', 'website', 'sic']) }
@@ -31,13 +27,11 @@ class ProspectsController < ApplicationController
 
   end
 
-  # Following 4 lines for importing from csv
   def import
     Prospect.import(params[:file])
     redirect_to root_url, notice: "Prospects imported."
   end
 
-  # Allowing for nested form to create results and notes
   def show
     @result = Result.new
     @note = Note.new
@@ -58,7 +52,14 @@ class ProspectsController < ApplicationController
     end
   end  
 
+  def menu
+    @note = Note.new
+  end
+
   def edit
+  end
+
+  def edit_contacts
   end
 
   def update
@@ -78,6 +79,9 @@ class ProspectsController < ApplicationController
     end
   end
 
+  def disposition
+  end
+  
 end
 
 
