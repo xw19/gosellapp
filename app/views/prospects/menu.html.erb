@@ -8,7 +8,7 @@
       </div>
       <div class="container-fluid">
         <div class="row">&nbsp;</div>
-          <div class="col-xs-12 center">
+          <div class="col-xs-12 center">Smile & Dial:
             <div class="btn-group">
               <button type="button" class="btn btn-default btn-sm dropdown-toggle"
                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -22,6 +22,43 @@
               </ul>
             </div>
           </div>
+          
+          <div class="row">
+            <div class="col-xs-12 center">Or</div>
+          </div>
+          
+          <!--Search by street next 10 lines-->
+          <div class="row">
+            <div class="col-xs-10 right">
+              <%= form_tag(prospects_path, method: :get) do %>
+              Walk & Talk: <%= text_field_tag :loc, params[:loc], placeholder: "Search by Street" %>
+                <%= submit_tag 'Go', class:"btn btn-info gradient round raised btn-xs", name: nil %>
+              <% end %>
+            </div>
+            <div class="col-xs-2">
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-xs-12 center">Or</div>
+          </div>
+
+          <!--Search for company by name next 10 lines-->
+          <div class="row">
+            <div class="col-xs-10 right">
+              <%= form_tag(prospects_path, method: :get) do %>
+                Search for a Prospect: <%= text_field_tag :co, params[:co], placeholder: "Search by Company" %>
+                <%= submit_tag 'Go', class:"btn btn-info gradient round raised btn-xs", name: nil %>
+              <% end %>
+            </div>
+            <div class="col-xs-2">
+            </div>
+          </div>
+          
+          
+          
+          
+          
         </div>
         
         <div class="row">&nbsp;</div>
