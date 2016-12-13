@@ -99,7 +99,7 @@ private
                 :last_name_3, :title_3, :phone_3, :m_phone_3, :email_3,
                 :alt_email_3, :linkedin_3, :facebook_3, :born_on_3, :other1,
                 :other2, :other3, :other4, :other5, :other6, :other7, :other8,
-                :eventdatetime, :sic, :primary_contact, :user_id,
+                :eventdatetime, :sic, :primary_contact, :canvassed, :called, :user_id,
                 notes_attributes: [:detail],
-                results_attributes: [:id, :disposition, :accessible, :event, :location, :user_id])
+                results_attributes: [:id, :disposition, :event, :activity, :location, :user_id])
   end

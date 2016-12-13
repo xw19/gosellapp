@@ -34,6 +34,20 @@
       <% end %>
     </div>
 
+<!--The following 5 lines should only be present in canvass.html.erb-->
+    <div class="row cant-see-me">
+      <%= fields_for(@prospect) do |f| %>
+        <%= f.hidden_field :canvassed, value: "true" %>
+      <% end %>
+    </div>
+
+<!--The following 5 lines should only be present in call.html.erb-->
+    <div class="row cant-see-me">
+      <%= fields_for(@prospect) do |f| %>
+        <%= f.hidden_field :called, value: "true" %>
+      <% end %>
+    </div>
+
 
 
 
@@ -71,7 +85,7 @@
 
             <!--The following data will be passed but the row should not be visable-->
             <div class="row cant-see-me">
-              <%= builder_2.hidden_field :accessible, value: "true" %>
+              Next line will identify wether the dispositioned event was 
               <%= builder_2.hidden_field :activity, value: "activity-test" %>
               <%= builder_2.hidden_field :location, value: "location-test" %>
               <%= builder_2.hidden_field :time_on_contact, value: "toc-test" %>
