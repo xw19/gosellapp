@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161212233413) do
+ActiveRecord::Schema.define(version: 20161213013715) do
 
   create_table "notes", force: :cascade do |t|
     t.text     "detail",      limit: 500
@@ -95,6 +95,9 @@ ActiveRecord::Schema.define(version: 20161212233413) do
     t.string   "location"
     t.string   "activity"
     t.datetime "event"
+    t.float    "coordinates"
+    t.float    "latitude"
+    t.float    "longitude"
     t.index ["prospect_id"], name: "index_results_on_prospect_id"
   end
 

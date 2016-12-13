@@ -63,9 +63,22 @@
             <div class="col-xs-6">Source: &nbsp; <%= @prospect.source %></div>
           <% end %>
         </div>
-        
+
         <div class="row">
-          <div class="col-xs-6">Canvassed: &nbsp; <%=@prospect.canvassed %></div>        
-          <div class="col-xs-6">Called: &nbsp; <%=@prospect.called %></div>         
+          <div class="col-xs-6">Canvassed: &nbsp; <%= @prospect.canvassed %></div>        
+          <div class="col-xs-6">Called: &nbsp; <%= @prospect.called %></div>         
         </div>
+        
+        <% if @prospect.results.present? %>
+          <div class="row">
+            <div class="col-xs-6">Last Disposition</div>
+            <div class="col-xs-6"><%= @prospect.results.last.disposition %></div>
+          </div>
+          <div class="row">
+            <div class="col-xs-4">Coord: <%= @prospect.results.last.coordinates %></div>
+            <div class="col-xs-4">Lat: <%= @prospect.results.last.latitude %></div>
+            <div class="col-xs-4">Long: <%= @prospect.results.last.longitude %></div>
+          </div>
+        <% end %>
+        
       </div>

@@ -101,5 +101,6 @@ private
                 :other2, :other3, :other4, :other5, :other6, :other7, :other8,
                 :eventdatetime, :sic, :primary_contact, :canvassed, :called, :user_id,
                 notes_attributes: [:detail],
-                results_attributes: [:id, :disposition, :event, :activity, :location, :user_id])
+                results_attributes: [:id, :disposition, :event, :activity,
+                :coordinates, :latitude, :longitude,:location, :user_id])
   end
